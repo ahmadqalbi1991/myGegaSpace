@@ -401,14 +401,7 @@
         }),
         methods: {
             makeImage(event) {
-                // const img_preview = event.target.files[0];
                 this.user_img_placeholder = URL.createObjectURL(this.user.image);
-                // if (!img_preview) {
-                //     return false;
-                // } else {
-                //     this.createImgData(img_preview);
-                //
-                // }
             },
             createImgData(file) {
                 let reader = new FileReader();
