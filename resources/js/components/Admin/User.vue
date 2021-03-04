@@ -102,16 +102,6 @@
                                 <p>{{ user.date_of_birth | filter_date }}</p>
                                 <v-divider></v-divider>
                             </div>
-                            <div v-show="user.identity_card_number" class="card-info">
-                                <label><i class="fas fa-id-card"></i> Identity Card Number</label>
-                                <p>{{ user.identity_card_number }}</p>
-                                <v-divider></v-divider>
-                            </div>
-                            <div v-show="user.blood_group" class="card-info">
-                                <label><i class="fas fa-plus-square"></i> Blood Group</label>
-                                <p>{{ user.blood_group }}</p>
-                                <v-divider></v-divider>
-                            </div>
                             <div v-show="user.martial_status" class="card-info">
                                 <label><i class="fas fa-user-friends"></i> Martial Status</label>
                                 <p>{{ user.martial_status | captilize }}</p>
@@ -211,7 +201,6 @@
                     image: '',
                     rights: '',
                     role: '',
-                    action: 'add',
                     address: '',
                     contact_number: '',
                     blood_group: '',
@@ -224,7 +213,6 @@
                     hash_id: ''
                 },
                 logs: [],
-                isEditable: false,
                 show_loader: true,
                 user_img_placeholder: '',
                 all_rights: [],
@@ -235,14 +223,12 @@
         methods: {
             getUser() {
                 this.show_loader = true;
-                axios.get('/user-data', {params: {id: this.$route.params.id}}).then((response) => {
+                axios.get('/user-data', {params: {id: this.$route.params.id, locked: true}}).then((response) => {
                     this.user = response.data.user;
                     this.items = response.data.user.rights.treeview;
                     this.values = response.data.user.rights.values;
                     this.logs = response.data.log;
                     this.show_loader = false;
-                    this.isEditable = true;
-                    this.user.action = 'edit';
                     this.checkImg();
                 });
             },
@@ -261,43 +247,6 @@
                     } else {
                         this.user_img_placeholder = '../img/placeholder.png'
                     }
-                }
-            },
-            editForm() {
-                if (this.isEditable) {
-                    this.isEditable = false;
-                    $("#edit-btn").hide();
-                    $("#submit-btn").show();
-                    $("#cancel-btn").show();
-                } else {
-                    this.isEditable = true;
-                    $("#edit-btn").show();
-                    $("#submit-btn").hide();
-                    $("#cancel-btn").hide();
-                }
-            },
-            saveUser() {
-                if (this.haveRight('users.edit')) {
-                    this.show_loader = true;
-                    this.form.post('/save-user').then((response) => {
-                        if (this.form.action == 'add') {
-                            this.form.reset();
-                        }
-                        toast.fire({
-                            icon: response.data['status'],
-                            title: response.data['message']
-                        });
-                    }).catch((response) => {
-                        toast.fire({
-                            icon: "error",
-                            title: "Something went wrong"
-                        });
-                    });
-                    this.show_loader = false;
-                    this.getUser();
-                    $("#edit-btn").show();
-                    $("#submit-btn").hide();
-                    $("#cancel-btn").hide();
                 }
             },
             open(event) {

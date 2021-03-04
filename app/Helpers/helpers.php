@@ -18,7 +18,7 @@
 
     /**
      * getStates
-     * @param $country_id
+     * @param $country_name
      *
      * @return mixed
      *
@@ -39,7 +39,7 @@
 
     /**
      * getCities
-     * @param $state_id
+     * @param $state_name
      *
      * @return mixed
      *
@@ -70,6 +70,36 @@
             ->get();
     }
 
+    /**
+     *
+     * get id
+     *
+     * @param $name
+     *
+     */
+    function getId($country = NULL, $state = NULL, $city = NULL, $table) {
+        return DB::table($table)
+            ->when($country && !$state && !$city, function ($q) use($country) {
+                return $q->where('name', $country);
+            })
+            ->when($country && $state && !$city, function ($q) use($country, $state) {
+                return $q->where(['name' => $state, 'country_id' => $country]);
+            })
+            ->when($country && $state && $city, function ($q) use($state, $city) {
+                return $q->where(['name' => $city, 'state_id' => $state]);
+            })
+            ->select('id')
+            ->first();
+    }
+
+    /**
+     * make file
+     * @param $img_prefix
+     * @param $img_name
+     * @param null $id
+     * @param $path
+     * @return string
+     */
     function makeFile($img_prefix, $img_name, $id = NULL, $path)
     {
         $image_type = isset(explode('/', explode(';', $img_name)[0])[1]) ? explode('/', explode(';', $img_name)[0])[1] : explode(".", $img_name)[1];
@@ -162,4 +192,66 @@
      */
     function adminSetting() {
         return Setting::where(['is_active' => 1, 'is_default' => 1])->first();
+    }
+
+    /**
+     *
+     * delete record
+     *
+     * @param $type, $id
+     *
+     */
+    function deleteRecord($type, $id) {
+        return DB::table($type)->where('id', $id)->delete();
+    }
+
+    /**
+     *
+     * send Mail
+     *
+     *
+     */
+    function sendMail($view = 'email_templates.email', $data = [], $subject, $to) {
+        Mail::send('email_templates.email', $data, function ($message) use($subject, $to) {
+            $message->subject($subject);
+            $message->from(Auth::user()->email, Auth::user()->name);
+            $message->to($to);
+        });
+    }
+
+    /**
+     * @param $image
+     * @param $gender
+     * @return string
+     */
+    function checkUserImage($image, $gender) {
+        if ($image) {
+            $image_path = '/admin-users/'.$image;
+            $image_path = Storage::url($image_path);
+            if (File::exists(public_path($image_path))) {
+                $image_path = asset('storage/admin-users/'.$image);
+            } else {
+                if (isset($gender)) {
+                    if ($gender == 'male') {
+                        $image_path = asset('img/man.png');
+                    } else {
+                        $image_path = asset('img/woman.png');
+                    }
+                } else {
+                    $image_path = asset('img/placeholder.png');
+                }
+            }
+        } else {
+            if (isset($gender)) {
+                if ($gender == 'male') {
+                    $image_path = asset('img/man.png');
+                } else {
+                    $image_path = asset('img/woman.png');
+                }
+            } else {
+                $image_path = asset('img/placeholder.png');
+            }
+        }
+
+        return $image_path;
     }

@@ -45,7 +45,7 @@ public function run()
 		array('name' => "Odisha",'country_id' => 101),
 		array('name' => "Paschim Medinipur",'country_id' => 101),
 		array('name' => "Pondicherry",'country_id' => 101),
-		array('name' => "Punjab",'country_id' => 101),
+		array('name' => "Punjab India",'country_id' => 101),
 		array('name' => "Rajasthan",'country_id' => 101),
 		array('name' => "Sikkim",'country_id' => 101),
 		array('name' => "Tamil Nadu",'country_id' => 101),

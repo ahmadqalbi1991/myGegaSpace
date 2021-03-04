@@ -1,8 +1,8 @@
-{{-- @dd(cache('translations')) --}}
 @php
     $rights = havePermissions();
     $shop_settings = shopSetting();
     $settings = adminSetting();
+    $all_rights = collect(treeView(json_encode(rights())));
 @endphp
     <!DOCTYPE html>
 <!--
@@ -28,6 +28,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     window._rights = {!! $rights !!}
     window.shop_settings = {!! $shop_settings !!}
     window.settings = {!! $settings !!}
+    window.all_rights = {!! $all_rights !!}
     window._translations = {!! cache('translations') !!}
 </script>
 <script src="{{ mix('/js/app.js') }}"></script>

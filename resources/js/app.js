@@ -60,6 +60,11 @@ Vue.component('VueElementLoading', VueElementLoading);
 Vue.use(require('vue-moment'));
 import moment from 'moment';
 
+//vform
+import Form from 'vform'
+window.Form = Form
+
+
 
 // routes
 import VueRouter from 'vue-router'
@@ -86,6 +91,9 @@ let routes = [
     {path: '/edit-user/:id',
     name: 'editUser',
     component: () => import(/* webpackPrefetch: true */'./components/Admin/UserForm.vue') },
+    {path: '/add-user',
+    name: 'addUser',
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/UserForm.vue') },
 ]
 
 const router = new VueRouter({
@@ -108,17 +116,12 @@ Vue.mixin({
             site_setting: [],
             setting: [],
             default_title: "Shop Name",
-            show_loader: true,
-            blood_groups: [
-                'O-',
-                'O+',
-                'A-',
-                'A+',
-                'B-',
-                'B+',
-                'AB-',
-                'AB+'
-            ]
+            show_alert: false,
+            alert_text: null,
+            alert_type: null,
+            dialog: false,
+            snackbar: false,
+            snackbar_text: null,
         }
     },
     watch: {
@@ -171,7 +174,22 @@ Vue.mixin({
                 id: id,
                 dark_theme: theme
             });
-            // localStorage.setItem("dark_theme", this.$vuetify.theme.dark.toString());
+        },
+        deleteRecord(type, id, items) {
+            this.show_loader = true;
+            axios.delete('/delete-record', {params: {type: type, id:id}}).then((response) => {
+                this.dialog = false;
+                this.show_loader = false;
+                this.show_alert = true;
+                this.alert_type = response.data.status;
+                this.alert_text = response.data.message;
+                this.$emit('resetData');
+            })
+        },
+        resetForm(obj) {
+            Object.keys(obj).forEach(function(key,index) {
+                obj[key] = '';
+            });
         }
     },
     async created() {

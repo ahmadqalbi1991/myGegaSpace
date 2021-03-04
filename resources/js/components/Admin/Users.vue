@@ -1,5 +1,14 @@
 <template>
     <div>
+        <v-alert
+            :type="alert_type"
+            :value="show_alert"
+            dismissible
+            @click.native="show_alert ? show_alert = false : show_alert = true"
+            rounded="0"
+        >
+            {{ alert_text }}
+        </v-alert>
         <v-container>
             <v-card
                 elevation="10"
@@ -7,6 +16,7 @@
             >
                 <v-card-title>
                     {{ __('message.users') }}
+                    <add-btn :type="__('message.user')" to="/add-user"></add-btn>
                 </v-card-title>
                 <datatable
                     :headers="headers"
@@ -15,6 +25,9 @@
                     :delete_permission="haveRight('users.delete_user')"
                     :to="view_path"
                     :delete-path="delete_path"
+                    type="User"
+                    @resetData="resetData"
+                    :show_loader="show_loader"
                 ></datatable>
             </v-card>
         </v-container>
@@ -24,6 +37,7 @@
 <script>
     import datatable from './layout/Datatable.vue'
     import shop_loader from './layout/Loader.vue'
+    import add_btn from './ui/AddButton.vue'
 
     export default {
         name: "Users.vue",
@@ -31,9 +45,9 @@
             return {
                 headers: [
                     {
-                        text: '#',
+                        text: '',
                         align: 'start',
-                        value: 'sr',
+                        value: 'image',
                     },
                     {
                         text: 'Name',
@@ -63,11 +77,17 @@
                     this.items = response.data;
                     this.show_loader = false;
                 });
+            },
+            resetData() {
+                setTimeout(() => [
+                    this.getUsers()
+                ], 2000)
             }
         },
         components: {
             'datatable': datatable,
-            'shop-loader': shop_loader
+            'shop-loader': shop_loader,
+            'add-btn': add_btn,
         },
         async mounted() {
             await this.getUsers();

@@ -28,6 +28,8 @@ Route::group(['middleware' => ['auth', 'admin', 'rights:dashboard']], function (
     Route::get('/user-data', 'Admin\UsersController@getUser');
     Route::post('/save-user', 'Admin\UsersController@saveUser');
     Route::post('/update-setting', 'Admin\SettingController@update');
+    Route::post('/check-unique', 'Admin\UsersController@getUniqueValue');
+    Route::delete('/delete-record', 'Admin\AdminController@deleteRecord');
 });
 
 // Protected Routes - allows only logged in customers

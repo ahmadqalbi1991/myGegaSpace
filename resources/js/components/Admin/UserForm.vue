@@ -1,5 +1,31 @@
 <template>
     <div>
+        <v-alert
+            :type="alert_type"
+            :value="show_alert"
+            dismissible
+            @click.native="show_alert ? show_alert = false : show_alert = true"
+            rounded="0"
+        >
+            {{ alert_text }}
+        </v-alert>
+        <v-snackbar
+            v-model="snackbar"
+            top
+            right
+        >
+            <v-icon>error</v-icon>
+            {{ snackbar_text }}&nbsp;
+            <template>
+                <v-btn
+                    color="pink"
+                    @click="snackbar = false"
+                    small
+                >
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+            </template>
+        </v-snackbar>
         <v-container>
             <v-row no-gutters>
                 <v-col
@@ -14,7 +40,7 @@
                             <back-btn></back-btn>
                         </v-card-title>
                         <div class="card-wrapper">
-                            <form>
+                            <form id="user_form">
                                 <v-row>
                                     <v-col
                                         cols="12"
@@ -30,6 +56,7 @@
                                             required
                                             @input="$v.user.first_name.$touch()"
                                             @blur="$v.user.first_name.$touch()"
+                                            prepend-icon="subject"
                                         ></v-text-field>
                                     </v-col>
                                     <v-col
@@ -46,6 +73,7 @@
                                             required
                                             @input="$v.user.last_name.$touch()"
                                             @blur="$v.user.last_name.$touch()"
+                                            prepend-icon="subject"
                                         ></v-text-field>
                                     </v-col>
                                 </v-row>
@@ -58,11 +86,13 @@
                                     >
                                         <v-text-field
                                             v-model="user.email"
-                                            :error-messages="emailErrors()"
+                                            :error-messages="emailErrors(__('message.email'))"
                                             :label="__('message.email')"
                                             required
+                                            :disabled="hasData && !!user.email"
                                             @input="$v.user.email.$touch()"
                                             @blur="$v.user.email.$touch()"
+                                            prepend-icon="alternate_email"
                                         ></v-text-field>
                                     </v-col>
                                     <v-col
@@ -76,8 +106,10 @@
                                             :error-messages="confirmField(__('message.confirm_email'), $v.user.confirm_email)"
                                             :label="__('message.confirm_email')"
                                             required
+                                            :disabled="hasData && !!user.confirm_email"
                                             @input="$v.user.confirm_email.$touch()"
                                             @blur="$v.user.confirm_email.$touch()"
+                                            prepend-icon="alternate_email"
                                         ></v-text-field>
                                     </v-col>
                                 </v-row>
@@ -92,6 +124,7 @@
                                         <v-radio-group
                                             v-model="user.gender"
                                             row
+                                            prepend-icon="fas fa-venus-mars"
                                         >
                                             <v-radio
                                                 :label="__('message.male')"
@@ -109,10 +142,12 @@
                                         md="4"
                                         sm="12"
                                     >
-                                        <v-checkbox
-                                            v-model="user.is_admin"
-                                            :label="__('message.is_admin')"
-                                        ></v-checkbox>
+                                        <v-select
+                                            v-model="user.martial_status"
+                                            :items="martial_statuses"
+                                            :label="__('message.martial_status')"
+                                            prepend-icon="list"
+                                        ></v-select>
                                     </v-col>
                                     <v-col
                                         cols="12"
@@ -124,6 +159,7 @@
                                             v-model="user.role"
                                             :items="roles"
                                             :label="__('message.role')"
+                                            prepend-icon="list"
                                         ></v-select>
                                     </v-col>
                                 </v-row>
@@ -141,6 +177,7 @@
                                             hide-selected
                                             small-chips
                                             @change="getStates(user.country_name)"
+                                            prepend-icon="flag"
                                         ></v-combobox>
                                     </v-col>
                                     <v-col
@@ -156,6 +193,7 @@
                                             hide-selected
                                             small-chips
                                             @change="getCities(user.state_name)"
+                                            prepend-icon="flag"
                                         ></v-combobox>
                                     </v-col>
                                     <v-col
@@ -170,6 +208,7 @@
                                             :label="__('message.city')"
                                             hide-selected
                                             small-chips
+                                            prepend-icon="flag"
                                         ></v-combobox>
                                     </v-col>
                                 </v-row>
@@ -180,11 +219,11 @@
                                         md="4"
                                         sm="12"
                                     >
-                                        <v-select
-                                            v-model="user.blood_group"
-                                            :items="blood_groups"
-                                            :label="__('message.blood_group')"
-                                        ></v-select>
+                                        <v-checkbox
+                                            v-model="user.is_admin"
+                                            :label="__('message.is_admin')"
+                                            prepend-icon="admin_panel_settings"
+                                        ></v-checkbox>
                                     </v-col>
                                     <v-col
                                         cols="12"
@@ -226,35 +265,23 @@
                                         sm="12"
                                     >
                                         <v-text-field
-                                            v-model="user.identity_card_number"
-                                            :error-messages="checkNumeric(__('message.cnic'), $v.user.identity_card_number)"
-                                            :label="__('message.cnic')"
-                                            @input="$v.user.identity_card_number.$touch()"
-                                            @blur="$v.user.identity_card_number.$touch()"
+                                            v-model="user.username"
+                                            :error-messages="nameError(__('message.username'), $v.user.username)"
+                                            :counter="20"
+                                            :disabled="hasData && !!user.username"
+                                            :label="__('message.username')"
+                                            required
+                                            @input="$v.user.username.$touch()"
+                                            @blur="$v.user.username.$touch()"
+                                            prepend-icon="fas fa-user"
                                         ></v-text-field>
                                     </v-col>
                                 </v-row>
                                 <v-row>
                                     <v-col
                                         cols="12"
-                                        lg="4"
-                                        md="4"
-                                        sm="12"
-                                    >
-                                        <v-text-field
-                                            v-model="user.username"
-                                            :error-messages="nameError(__('message.username'), $v.user.username)"
-                                            :counter="10"
-                                            :label="__('message.username')"
-                                            required
-                                            @input="$v.user.username.$touch()"
-                                            @blur="$v.user.username.$touch()"
-                                        ></v-text-field>
-                                    </v-col>
-                                    <v-col
-                                        cols="12"
-                                        lg="4"
-                                        md="4"
+                                        lg="6"
+                                        md="6"
                                         sm="12"
                                     >
                                         <v-text-field
@@ -265,12 +292,13 @@
                                             required
                                             @input="$v.user.contact_number.$touch()"
                                             @blur="$v.user.contact_number.$touch()"
+                                            prepend-icon="contact_phone"
                                         ></v-text-field>
                                     </v-col>
                                     <v-col
                                         cols="12"
-                                        lg="4"
-                                        md="4"
+                                        lg="6"
+                                        md="6"
                                         sm="12"
                                     >
                                         <v-textarea
@@ -280,6 +308,7 @@
                                             counter
                                             rows="1"
                                             row-height="15"
+                                            prepend-icon="home"
                                         ></v-textarea>
                                     </v-col>
                                 </v-row>
@@ -296,8 +325,9 @@
                                             prepend-icon="mdi-camera"
                                             counter
                                             show-size
-                                            v-model="user.image"
-                                            @change="makeImage"
+                                            v-model="user.image_name"
+                                            type="file"
+                                            @change="createImgData"
                                         ></v-file-input>
                                     </v-col>
                                     <v-col
@@ -316,15 +346,50 @@
                                         </v-avatar>
                                     </v-col>
                                 </v-row>
-                                <v-btn
-                                    class="mr-4"
-                                    @click="submit"
-                                >
-                                    submit
-                                </v-btn>
-                                <v-btn @click="clear">
-                                    clear
-                                </v-btn>
+                                <v-row>
+                                    <v-col
+                                        cols="12"
+                                    >
+                                        <v-expansion-panels inset>
+                                            <v-expansion-panel>
+                                                <v-expansion-panel-header>{{ __("message.rights") }}
+                                                </v-expansion-panel-header>
+                                                <v-expansion-panel-content>
+                                                    <div class="card-wrapper">
+                                                        <v-treeview
+                                                            selectable
+                                                            rounded
+                                                            selected-color="primary"
+                                                            open-on-click
+                                                            :items="items"
+                                                            activatable
+                                                            @update:active="updateTreeview"
+                                                            @input="updateTreeview"
+                                                            :value="user.rights"
+                                                        ></v-treeview>
+                                                    </div>
+                                                </v-expansion-panel-content>
+                                            </v-expansion-panel>
+                                        </v-expansion-panels>
+                                    </v-col>
+                                </v-row>
+                                <v-row>
+                                    <v-col
+                                        cols="12"
+                                    >
+                                        <div class="buttons">
+                                            <v-btn
+                                                class="mr-4"
+                                                @click="saveUser"
+                                                color="success"
+                                                right
+                                                :loading="show_loader"
+                                            >
+                                                {{ __('message.save') }}
+                                            </v-btn>
+                                        </div>
+                                    </v-col>
+                                </v-row>
                             </form>
                         </div>
                     </v-card>
@@ -336,27 +401,20 @@
 
 <script>
     import back_btn from './ui/BackButton.vue'
-    import { validationMixin } from 'vuelidate'
-    import { required, sameAs, maxLength, email, numeric } from 'vuelidate/lib/validators'
+    import {validationMixin} from 'vuelidate'
+    import {required, sameAs, maxLength, email, numeric, isUnique} from 'vuelidate/lib/validators'
 
     export default {
         mixins: [validationMixin],
         validations: {
             user: {
-                first_name: { required, maxLength: maxLength(10) },
-                username: { required, maxLength: maxLength(10) },
-                contact_number: { required, maxLength: maxLength(20) },
-                last_name: { required, maxLength: maxLength(10) },
-                email: { required, email },
-                confirm_email : { required, sameAsEmail: sameAs('email') },
-                identity_card_number: { numeric },
-            },
-            select: { required },
-            checkbox: {
-                checked (val) {
-                    return val
-                },
-            },
+                first_name: {required, maxLength: maxLength(10)},
+                username: {required, maxLength: maxLength(10) },
+                contact_number: {required, maxLength: maxLength(20)},
+                last_name: {required, maxLength: maxLength(10)},
+                email: {required, email},
+                confirm_email: {required, sameAsEmail: sameAs('email')}
+            }
         },
         data: () => ({
             martial_statuses: [
@@ -375,14 +433,13 @@
                 confirm_email: '',
                 email_verified_at: '',
                 gender: '',
-                image: '',
-                rights: '',
+                image: [],
+                image_name: '',
+                rights: [],
                 role: '',
                 action: 'add',
                 address: '',
                 contact_number: '',
-                blood_group: '',
-                identity_card_number: '',
                 martial_status: '',
                 date_of_birth: '',
                 city_name: '',
@@ -392,45 +449,39 @@
                 username: ''
             },
             logs: [],
-            isEditable: false,
-            show_loader: true,
+            hasData: false,
+            show_loader: false,
             user_img_placeholder: '',
             all_rights: [],
-            values: [],
             items: []
         }),
         methods: {
-            makeImage(event) {
-                this.user_img_placeholder = URL.createObjectURL(this.user.image);
+            makeImage() {
+                this.user_img_placeholder = URL.createObjectURL(this.user.image_name);
             },
             createImgData(file) {
                 let reader = new FileReader();
+                this.makeImage();
                 reader.onload = (file) => {
                     this.user.image = reader.result;
                 };
                 reader.readAsDataURL(file);
             },
-            checkNumeric (label, key) {
-                const errors = []
-                if (!key.$dirty) return errors
-                !key.numeric && errors.push(this.__('message.mustNumeric', [label]))
-                return errors
-            },
-            save (date) {
+            save(date) {
                 this.$refs.menu.save(date)
             },
-            nameError (label, key) {
+            nameError(label, key) {
                 const errors = []
                 if (!key.$dirty) return errors
                 !key.maxLength && errors.push(this.__('message.maxLength', [label]))
                 !key.required && errors.push(this.__('message.mustRequired', [label]))
                 return errors
             },
-            emailErrors () {
+            emailErrors(label) {
                 const errors = []
                 if (!this.$v.user.email.$dirty) return errors
-                !this.$v.user.email.email && errors.push('Must be valid e-mail')
-                !this.$v.user.email.required && errors.push('E-mail is required')
+                !this.$v.user.email.email && errors.push(this.__('message.mustBeValid', [label]))
+                !this.$v.user.email.required && errors.push(this.__('message.mustRequired', [label]))
                 return errors
             },
             confirmField(label, key) {
@@ -451,28 +502,61 @@
 
                 this.roles = roles;
             },
-            submit () {
-                this.$v.$touch()
+            saveUser() {
+                this.show_loader = true;
+                this.$v.user.$touch();
+                axios({
+                    method: 'POST',
+                    url: '/save-user',
+                    data: this.user
+                }).then((response) => {
+                    if (response.data.status == 'error' && response.data.error_type == 'validation') {
+                        if (response.data.email_error) {
+                            this.snackbar = true;
+                            this.snackbar_text = this.__('message.has_been_selected', [this.__('message.email')])
+                            return;
+                        }
+                        if (response.data.username_error) {
+                            this.snackbar = true;
+                            this.snackbar_text = this.__('message.has_been_selected', [this.__('message.username')])
+                            return;
+                        }
+                    } else {
+                        if (this.user.action == 'add') {
+                            this.resetForm(this.user);
+                            this.user.action = 'add';
+                            this.$v.user.$reset();
+                        }
+                        this.show_alert = true;
+                        this.alert_text = response.data.message;
+                        this.alert_type = response.data.status;
+                    }
+                })
+                this.show_loader = false;
+                if (this.user.action != 'add') {
+                    this.getUser();
+                }
             },
             getUser() {
-                this.show_loader = true;
                 var user_id = null;
                 if (this.$route.params.id) {
                     user_id = this.$route.params.id
+                    axios.get('/user-data', {params: {id: user_id, locked: false}}).then((response) => {
+                        this.user = response.data.user;
+                        this.user.rights = response.data.user.rights.values;
+                        this.logs = response.data.log;
+                        this.show_loader = false;
+                        this.hasData = true;
+                        this.user.action = 'edit';
+                        this.user.confirm_email = this.user.email;
+                        this.getStates(this.user.country_name);
+                        this.getCities(this.user.state_name);
+                        this.checkImg();
+                    });
+                } else {
+                    this.user_img_placeholder = '../img/placeholder.png'
                 }
-                axios.get('/user-data', {params: {id: user_id}}).then((response) => {
-                    this.user = response.data.user;
-                    this.items = response.data.user.rights.treeview;
-                    this.values = response.data.user.rights.values;
-                    this.logs = response.data.log;
-                    this.show_loader = false;
-                    this.isEditable = true;
-                    this.user.action = 'edit';
-                    this.user.confirm_email = this.user.email;
-                    this.getStates(this.user.country_name);
-                    this.getCities(this.user.state_name);
-                    this.checkImg();
-                });
+                this.items = window.all_rights.treeview;
             },
             checkImg() {
                 if (this.user.image) {
@@ -491,6 +575,9 @@
                     }
                 }
             },
+            updateTreeview(item) {
+                this.user.rights = item;
+            }
         },
         components: {
             'back-btn': back_btn
