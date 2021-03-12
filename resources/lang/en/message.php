@@ -119,5 +119,9 @@ return [
     'template_exists' => ':key is already exists, You can edit previous template but cannot add new template of same type',
     'active' => 'Active',
     'disable' => 'Disable',
-    'email_wrong' => 'If this email is wrong, then reply us back at'
+    'email_wrong' => 'If this email is wrong, then reply us back at',
+    'single' => 'Single',
+    'divorced' => 'Divorced',
+    'married' => 'Married',
+    'separated' => 'Separated'
 ];

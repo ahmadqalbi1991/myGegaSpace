@@ -10,10 +10,10 @@
      */
     function getCountries() {
         $countries = DB::table("countries")
-            ->select('name')
+            ->select('id', 'name')
             ->get();
 
-        return $countries->pluck('name');
+        return $countries;
     }
 
     /**
@@ -23,37 +23,30 @@
      * @return mixed
      *
      */
-    function getStates($country_name)
+    function getStates($country)
     {
-        $country_id = DB::table("countries")
-            ->where("name", $country_name)
-            ->value('id');
-
         $states = DB::table("states")
-            ->select('name')
-            ->where("country_id", $country_id)
+            ->select('id', 'name')
+            ->where("country_id", $country)
             ->get();
 
-        return $states->pluck('name');
+        return $states;
     }
 
-    /**
+/**
      * getCities
      * @param $state_name
      *
      * @return mixed
      *
      */
-    function getCities($state_name) {
-        $state_id = DB::table("states")
-            ->where("name", $state_name)
-            ->value('id');
-
+    function getCities($state) {
         $cities = DB::table("cities")
-            ->where("state_id", $state_id)
+            ->select('id', 'name')
+            ->where("state_id", $state)
             ->get();
 
-        return $cities->pluck('name');
+        return $cities;
     }
 
     /**

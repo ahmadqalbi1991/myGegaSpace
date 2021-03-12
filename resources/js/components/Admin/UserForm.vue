@@ -139,6 +139,8 @@
                                         <v-select
                                             v-model="user.martial_status"
                                             :items="martial_statuses"
+                                            item-value="value"
+                                            item-text="title"
                                             :label="__('message.martial_status')"
                                             prepend-icon="list"
                                         ></v-select>
@@ -152,6 +154,8 @@
                                         <v-select
                                             v-model="user.role"
                                             :items="roles"
+                                            item-text="title"
+                                            item-value="value"
                                             :label="__('message.role')"
                                             prepend-icon="list"
                                         ></v-select>
@@ -167,6 +171,8 @@
                                         <v-combobox
                                             v-model="user.country_name"
                                             :items="countries"
+                                            item-value="id"
+                                            item-text="name"
                                             :label="__('message.country')"
                                             hide-selected
                                             small-chips
@@ -183,6 +189,8 @@
                                         <v-combobox
                                             v-model="user.state_name"
                                             :items="states"
+                                            item-text="name"
+                                            item-value="id"
                                             :label="__('message.state')"
                                             hide-selected
                                             small-chips
@@ -199,6 +207,8 @@
                                         <v-combobox
                                             v-model="user.city_name"
                                             :items="cities"
+                                            item-text="name"
+                                            item-value="id"
                                             :label="__('message.city')"
                                             hide-selected
                                             small-chips
@@ -409,12 +419,7 @@
             }
         },
         data: () => ({
-            martial_statuses: [
-                'single',
-                'married',
-                'divorced',
-                'separated',
-            ],
+            martial_statuses: [],
             roles: [],
             user: {
                 id: '',
@@ -483,14 +488,23 @@
                 !key.required && errors.push(this.__('message.mustRequired', [label]))
                 return errors
             },
+            martialStatues() {
+              var statues = [];
+              statues.push({'title': this.__('message.single'), 'value': 'single'});
+              statues.push({'title': this.__('message.married'), 'value': 'married'});
+              statues.push({'title': this.__('message.divorced'), 'value': 'divorced'});
+              statues.push({'title': this.__('message.separated'), 'value': 'separated'});
+
+              this.martial_statuses = statues;
+            },
             rolesList() {
                 var roles = [];
-                roles.push(this.__('message.super_admin'))
-                roles.push(this.__('message.admin'))
-                roles.push(this.__('message.accountant'))
-                roles.push(this.__('message.manager'))
-                roles.push(this.__('message.customer'))
-                roles.push(this.__('message.user'))
+                roles.push({'title': this.__('message.super_admin'), 'value': 'super_admin'})
+                roles.push({'title': this.__('message.admin'), 'value': 'admin'})
+                roles.push({'title': this.__('message.accountant'), 'value': 'accountant'})
+                roles.push({'title': this.__('message.manager'), 'value': 'manager'})
+                roles.push({'title': this.__('message.customer'), 'value': 'customer'})
+                roles.push({'title': this.__('message.user'), 'value': 'user'})
 
                 this.roles = roles;
             },
@@ -534,8 +548,8 @@
                         this.hasData = true;
                         this.user.action = 'edit';
                         this.user.confirm_email = this.user.email;
-                        this.getStates(this.user.country_name);
-                        this.getCities(this.user.state_name);
+                        this.getStates(this.user.country_id);
+                        this.getCities(this.user.state_id);
                         this.checkImg();
                     });
                 } else {
@@ -570,6 +584,7 @@
         async mounted() {
             await this.getUser();
             this.rolesList();
+            this.martialStatues();
             this.getCountries();
         }
     }

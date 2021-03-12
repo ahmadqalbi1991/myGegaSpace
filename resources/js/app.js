@@ -144,33 +144,24 @@ Vue.mixin({
                 this.countries = data.data;
             });
         },
-        getStates(country_name) {
+        getStates(country) {
             this.states = null;
             axios.get('/get-states', {
                 params:{
-                    name: country_name
+                    id: country
                 }
               }).then((data) => {
                 this.states = data.data;
             });
         },
-        getCities(state_name) {
+        getCities(state) {
             this.cities = null;
             axios.get('/get-cities', {
                 params:{
-                    name: state_name
+                    id: state
                 }
               }).then((data) => {
                 this.cities = data.data;
-            });
-        },
-        getCountryCode(country_id) {
-            axios.get('/get-country-code', {
-                params:{
-                    country_id: country_id
-                }
-              }).then((data) => {
-                $("#country_code").val('+' + data.data[0]['phonecode']);
             });
         },
         setTheme() {

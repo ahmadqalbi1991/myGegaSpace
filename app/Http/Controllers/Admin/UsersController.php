@@ -126,12 +126,6 @@ class UsersController extends Controller
             return ['icon' => 'error', 'status' => 'error', 'error_type' => 'validation', 'error_message' => isset($errors->get('email')[0]) ? __('message.has_been_selected', ['key' => __('message.email')]) : (isset($errors->get('username')[0]) ? __('message.has_been_selected', ['key' => __('message.username')]) : NULL)];
         }
 
-        $get_country_id = getId($input['country_name'], NULL, NULL, 'countries');
-        $input['country_id'] = $get_country_id->id;
-        $get_state_id = getId($input['country_id'], $input['state_name'], NULL, 'states');
-        $input['state_id'] = $get_state_id->id;
-        $get_city_id = getId($input['country_id'], $input['state_id'], $input['city_name'], 'cities');
-        $input['city_id'] = $get_city_id->id;
         $input['rights'] = isset($input['rights']) && $input['rights'] ? json_encode(makeRightsArray($input['rights'])) : NULL;
         $action = $input['action'];
         unset($input['action']);

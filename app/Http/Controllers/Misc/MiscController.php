@@ -30,8 +30,12 @@ class MiscController extends Controller
 
     public function getStates(Request $request)
     {
-        $country_name = $request->get('name');
-        return getStates($country_name);
+        $country = $request->get('id');
+        if (!is_numeric($country)) {
+            $country = json_decode($country);
+            $country = $country->id;
+        }
+        return getStates($country);
     }
 
     /**
@@ -44,8 +48,12 @@ class MiscController extends Controller
 
     public function getCities(Request $request)
     {
-        $state_name = $request->get('name');
-        return getCities($state_name);
+        $state = $request->get('id');
+        if (!is_numeric($state)) {
+            $state = json_decode($state);
+            $state = $state->id;
+        }
+        return getCities($state);
     }
 
     /**
