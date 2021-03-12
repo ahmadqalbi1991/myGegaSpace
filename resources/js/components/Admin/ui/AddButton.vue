@@ -1,5 +1,6 @@
 <template>
     <v-btn
+        v-if="right"
         absolute
         right
         class="ma-2 white--text"
@@ -17,7 +18,7 @@
 <script>
     export default {
         name: "AddButton.vue",
-        props: ['type', 'to']
+        props: ['type', 'to', 'right']
     }
 </script>
 

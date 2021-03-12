@@ -64,6 +64,7 @@
                                     </div>
                                     <v-card-actions>
                                         <v-btn
+                                            v-if="haveRight('users.edit_user')"
                                             class="ma-2 white--text"
                                             elevation="10"
                                             :loading="show_loader"

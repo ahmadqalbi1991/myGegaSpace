@@ -38,15 +38,33 @@ module.exports = {
         haveRight(right) {
             var rights_arr = right.split('.');
             var arr_len = rights_arr.length;
+            if (arr_len > 0) {
+                switch (arr_len) {
+                    case 1:
+                        if (window._rights[rights_arr[0]]) {
+                            return window._rights[rights_arr[0]];
+                        } else {
+                            return;
+                        }
+                        break;
 
-            switch (arr_len) {
-                case 1:
-                    return window._rights[rights_arr[0]];
-                    break;
+                    case 2:
+                        if (window._rights[rights_arr[0]]) {
+                            if (window._rights[rights_arr[0]][rights_arr[1]]) {
+                                return window._rights[rights_arr[0]][rights_arr[1]];
+                            } else {
+                                return;
+                            }
+                        } else {
+                            return;
+                        }
+                        break;
 
-                case 2:
-                    return window._rights[rights_arr[0]][rights_arr[1]];
-                    break;
+                    default:
+                        return;
+                }
+            } else {
+                return;
             }
         }
     },

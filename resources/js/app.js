@@ -64,8 +64,6 @@ import moment from 'moment';
 import Form from 'vform'
 window.Form = Form
 
-
-
 // routes
 import VueRouter from 'vue-router'
 import content_wrapper from './components/Admin/Main.vue'
@@ -94,6 +92,15 @@ let routes = [
     {path: '/add-user',
     name: 'addUser',
     component: () => import(/* webpackPrefetch: true */'./components/Admin/UserForm.vue') },
+    {path: '/email-templates',
+    name: 'emailTemplates',
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/EmailTemplates.vue') },
+    {path: '/edit-email-template/:id',
+    name: 'editEmailTemplate',
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/EmailTemplateForm.vue') },
+    {path: '/add-email-template',
+    name: 'addEmailTemplate',
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/EmailTemplateForm.vue') },
 ]
 
 const router = new VueRouter({
@@ -122,6 +129,8 @@ Vue.mixin({
             dialog: false,
             snackbar: false,
             snackbar_text: null,
+            snackbar_icon: null,
+            snackbar_color: null,
         }
     },
     watch: {
@@ -175,14 +184,21 @@ Vue.mixin({
                 dark_theme: theme
             });
         },
-        deleteRecord(type, id, items) {
+        deleteRecord(type, id) {
             this.show_loader = true;
             axios.delete('/delete-record', {params: {type: type, id:id}}).then((response) => {
                 this.dialog = false;
                 this.show_loader = false;
-                this.show_alert = true;
-                this.alert_type = response.data.status;
-                this.alert_text = response.data.message;
+                this.$emit('resetData');
+            })
+        },
+        changeStatus(id, value, type) {
+            if (value == 'Active') {
+                value = 'Disable'
+            } else if (value == 'Disable') {
+                value = 'Active'
+            }
+            axios.post('/change-status', {type: type, id: id, value: value}).then(() => {
                 this.$emit('resetData');
             })
         },

@@ -25,4 +25,25 @@ class AdminController extends Controller
             return ['status' => 'error', 'message' => __('message.something_went_wrong')];
         }
     }
+
+    /**
+     *
+     * change Status
+     *
+     * @param $id, $type, $value
+     *
+     * @return array
+     */
+    public function changeStatus(Request $request) {
+        $input = $request->input();
+        $type = strtolower($input['type']);
+        $id = $input['id'];
+        $value = $input['value'];
+        $status = changeStatus($type . 's', $id, $value);
+        if ($status) {
+            return ['status' => 'success', 'message' => __('message.status_change_success', ['key' => $type])];
+        } else {
+            return ['status' => 'error', 'message' => __('message.something_went_wrong')];
+        }
+    }
 }

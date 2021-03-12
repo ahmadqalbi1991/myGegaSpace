@@ -28,8 +28,11 @@ Route::group(['middleware' => ['auth', 'admin', 'rights:dashboard']], function (
     Route::get('/user-data', 'Admin\UsersController@getUser');
     Route::post('/save-user', 'Admin\UsersController@saveUser');
     Route::post('/update-setting', 'Admin\SettingController@update');
-    Route::post('/check-unique', 'Admin\UsersController@getUniqueValue');
+    Route::post('/change-status', 'Admin\AdminController@changeStatus');
     Route::delete('/delete-record', 'Admin\AdminController@deleteRecord');
+    Route::get('/emails-templates-data', 'Admin\EmailTemplatesController@index');
+    Route::post('/save-email-template', 'Admin\EmailTemplatesController@saveTemplate');
+    Route::get('/email-template-data', 'Admin\EmailTemplatesController@getTemplate');
 });
 
 // Protected Routes - allows only logged in customers

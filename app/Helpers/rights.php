@@ -153,14 +153,23 @@ function rights()
         'shop_setting' => [
             'add_setting' => 1,
             'edit_setting' => 1,
-            'settings' => 1
+            'shop_settings' => 1
         ],
         'users' => [
             'user_list' => 1,
             'view_user' => 1,
             'add_user' => 1,
             'edit_user' => 1,
-            'delete_user' => 1
+            'delete_user' => 1,
+            'change_status_for_user' => 1
+        ],
+        'settings' => [
+            'setting' => 1,
+        ],
+        'email_templates' => [
+            'email_templates_list'  => 1,
+            'add_email_template' => 1,
+            'edit_email_template' => 1,
         ]
     ];
 }

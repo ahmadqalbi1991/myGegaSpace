@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 // namespace App\Helpers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\EmailTemplates;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Shop;

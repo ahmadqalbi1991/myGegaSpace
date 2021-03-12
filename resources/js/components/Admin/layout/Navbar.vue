@@ -47,19 +47,55 @@
                 <v-list-item-group
                     v-model="group"
                 >
-                    <v-list-item v-show="haveRight('dashboard')" :to="{name: 'dashboard'}" link>
+                    <v-list-item v-if="haveRight('dashboard')" :to="{name: 'dashboard'}" link>
                         <v-list-item-icon>
-                            <v-icon>dashboard</v-icon>
+                            <v-icon>mdi-view-dashboard</v-icon>
                         </v-list-item-icon>
-                        <v-list-item-title>{{ __('message.dashboard') }}</v-list-item-title>
+                        <v-list-item-title>
+                            {{ __('message.dashboard') }}
+                        </v-list-item-title>
                     </v-list-item>
 
-                    <v-list-item v-show="haveRight('users.user_list')" :to="{name: 'users'}" link>
+                    <v-list-item v-if="haveRight('users.user_list')" :to="{name: 'users'}" link>
                         <v-list-item-icon>
                             <v-icon>groups</v-icon>
                         </v-list-item-icon>
-                        <v-list-item-title>{{ __('message.users') }}</v-list-item-title>
+                        <v-list-item-title>
+                            {{ __('message.users') }}
+                        </v-list-item-title>
                     </v-list-item>
+
+                    <v-list-group
+                        v-if="haveRight('settings.setting') || haveRight('email_templates.email_templates_list')"
+                        prepend-icon="settings_applications"
+                        no-action
+                    >
+                        <template v-slot:activator>
+                            <v-list-item-title>
+                                {{ __('message.settings') }}
+                            </v-list-item-title>
+                        </template>
+
+                        <template>
+                            <v-list-item v-if="haveRight('email_templates.email_templates_list')" :to="{name: 'emailTemplates'}" link>
+                                <v-list-item-content>
+                                    <v-list-item-title>
+                                        {{ __('message.email_templates') }}
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </template>
+
+                        <template>
+                            <v-list-item v-if="haveRight('settings.setting')" :to="{name: 'emailTemplates'}" link>
+                                <v-list-item-content>
+                                    <v-list-item-title>
+                                        {{ __('message.setting') }}
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </template>
+                    </v-list-group>
                 </v-list-item-group>
             </v-list>
         </v-navigation-drawer>

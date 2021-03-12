@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Models\General\Log;
+use App\Models\Admin\EmailTemplates;
 use Hashids\Hashids;
 use Auth, Image, Storage, File, Validator;
 
@@ -51,13 +52,15 @@ class UsersController extends Controller
         $data = [];
         $sr = 0;
 
-        foreach ($users as $key => $value) {
-            $image_path = checkUserImage($value['image'], $value['gender']);
+        foreach ($users as $key => $user) {
+            $image_path = checkUserImage($user['image'], $user['gender']);
             $data[$key] = [];
-            $data[$key] = $value;
+            $data[$key] = $user;
             $data[$key]['sr'] = ++$sr;
             $data[$key]['image'] = $image_path;
-            $data[$key]['hash_id'] = $this->hashids->encode($value['id']);
+            $data[$key]['hash_id'] = $this->hashids->encode($user['id']);
+            $data[$key]['color'] = $user['status'] == 'Active' ? 'success' : 'error';
+            $data[$key]['status'] = $user['status'] == 'Active' ? __('message.active') : __('message.disable');
         }
 
         return $data;
@@ -67,7 +70,7 @@ class UsersController extends Controller
      *
      * get user data
      *
-     * @param $id
+     * @param $request
      *
      * @return result
      *
@@ -118,9 +121,9 @@ class UsersController extends Controller
         ];
         $validator = Validator::make($input, $rules, $messages);
 
-        if ($validator->fails()) {
+        if ($validator->fails() && $input['action'] == 'add') {
             $errors = $validator->errors();
-            return ['status' => 'error', 'error_type' => 'validation', 'email_error' => isset($errors->get('email')[0]) ? TRUE : NULL, 'username_error' => isset($errors->get('username')[0]) ? TRUE : NULL];
+            return ['icon' => 'error', 'status' => 'error', 'error_type' => 'validation', 'error_message' => isset($errors->get('email')[0]) ? __('message.has_been_selected', ['key' => __('message.email')]) : (isset($errors->get('username')[0]) ? __('message.has_been_selected', ['key' => __('message.username')]) : NULL)];
         }
 
         $get_country_id = getId($input['country_name'], NULL, NULL, 'countries');
@@ -177,13 +180,15 @@ class UsersController extends Controller
             $password = Str::random(10);
             $input['password'] = Hash::make($password);
             $input['original_password'] = $password;
+            $output['template_data'] = EmailTemplates::where('type', 'admin_welcome')->first();
             $output['shop_setting'] = shopSetting();
             $output['user_data'] = $input;
             $status = User::firstOrCreate($input);
             if ($status) {
-                sendMail('', $output, "Account Created", $input['email']);
+                sendMail('', $output, $output['template_data']->subject, $input['email']);
                 $status = "success";
-                $message = __("message.admin_add_success");
+                $icon = "checked";
+                $message = __("message.add_success", ['key' => __('message.user')]);
                 $log_message = __("message.user_added_log");
                 $log = [
                     'user_id' => Auth::user()->id,
@@ -193,15 +198,18 @@ class UsersController extends Controller
             }
         } else {
             // update user
+            $input['updated_at'] = date('Y-m-d');
             $user = User::find($input['id']);
             $result = $user->fill($input)->save();
             if(!$user->wasChanged()) {
                 $status = "warning";
+                $icon = 'warning';
                 $message = __("message.no_changes");
             } else {
                 if ($result) {
                     $status = "success";
-                    $message = __("message.admin_update_success");
+                    $icon = 'check';
+                    $message = __("message.update_success", ['key' => __('message.user')]);
                     $log_message = __("message.user_update_log", ['user' => ucwords(Auth::user()->name), 'gender' => $gender]);
                     $log = [
                         'user_id' => $input['id'],
@@ -215,6 +223,6 @@ class UsersController extends Controller
             }
         }
 
-        return ['status' => $status, 'message' => $message];
+        return ['status' => $status, 'message' => $message, 'icon' => $icon];
     }
 }

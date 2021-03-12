@@ -71,21 +71,21 @@
     </tr>
     <tr class="text-center">
         <td class="w-50">
-            <p>Congratulations, your account on <b>{{ $shop_setting->shop_name }}</b> has been created. Please click the button below to login,
-                Your account details are given below, Your Password will expire in 3 days.
-            </p>
+            <p>{{ $template_data->body }}</p>
         </td>
     </tr>
     <tr>
         <td><br><br><br></td>
     </tr>
-    <tr class="text-center">
-        <td>
-            <a href="{{ URL('login') }}" class="login-btn p-20-50">
-                {{ __('message.click_here_to_login') }}
-            </a>
-        </td>
-    </tr>
+    @if($template_data->show_login_btn)
+        <tr class="text-center">
+            <td>
+                <a href="{{ URL('login') }}" class="login-btn p-20-50">
+                    {{ __('message.click_here_to_login') }}
+                </a>
+            </td>
+        </tr>
+    @endif
     <tr>
         <td><br><br><br></td>
     </tr>
@@ -118,7 +118,7 @@
     </tr>
     <tr class="text-center">
         <td>
-            <p>If this email is wrong, then reply us back at <b>{{ $shop_setting->shop_email }}</b></p>
+            <p>{{ __('message.email_wrong') }} <b>{{ $shop_setting->shop_email }}</b></p>
         </td>
     </tr>
 </table>

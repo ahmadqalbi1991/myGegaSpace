@@ -6,6 +6,7 @@
     >
         <template v-slot:item.image="{item}">
             <v-avatar
+                v-if="item.image"
                 size="50"
             >
                 <img
@@ -14,9 +15,27 @@
                 >
             </v-avatar>
         </template>
+        <template v-slot:item.status="{item}">
+            <v-btn
+                v-if="change_status"
+                :color="item.color"
+                class="ma-2 white--text"
+                small
+                @click="changeStatus(item.id, item.status, type)"
+            >
+                {{ item.status }}
+            </v-btn>
+            <v-chip
+                v-else
+                :color="item.color"
+                small
+            >
+                {{ item.status }}
+            </v-chip>
+        </template>
         <template v-slot:item.hash_id="{ item }">
             <v-btn
-                v-show="view"
+                v-if="view"
                 color="primary"
                 class="ma-2 white--text"
                 small
@@ -30,7 +49,21 @@
                 </v-icon>
             </v-btn>
             <v-btn
-                v-show="delete_permission"
+                v-if="edit"
+                color="primary"
+                class="ma-2 white--text"
+                small
+                :to="{name: edit_path, params: {id: item.hash_id}}"
+            >
+                {{ __('message.edit') }}
+                <v-icon
+                    right
+                >
+                    create
+                </v-icon>
+            </v-btn>
+            <v-btn
+                v-if="delete_permission"
                 color="error"
                 class="ma-2 white--text"
                 small
@@ -68,7 +101,7 @@
 
                         <v-btn
                             color="error"
-                            @click="deleteRecord(type, deleteId, items)"
+                            @click="deleteRecord(type, deleteId)"
                             :loading="show_loader"
                         >
                             {{ __('message.confirm') }}
@@ -95,6 +128,6 @@
                 }
             }
         },
-        props: ['headers', 'items', 'view', 'delete_permission', 'to', 'delete_path', 'type', 'show_loader']
+        props: ['headers', 'items', 'view', 'edit', 'delete_permission', 'to', 'type', 'show_loader', 'edit_path']
     }
 </script>

@@ -1,26 +1,20 @@
 <template>
     <div>
-        <v-alert
-            :type="alert_type"
-            :value="show_alert"
-            dismissible
-            @click.native="show_alert ? show_alert = false : show_alert = true"
-            rounded="0"
-        >
-            {{ alert_text }}
-        </v-alert>
         <v-snackbar
             v-model="snackbar"
             top
             right
+            :color="snackbar_color"
         >
-            <v-icon>error</v-icon>
+            <v-icon>{{ snackbar_icon }}</v-icon>
             {{ snackbar_text }}&nbsp;
             <template>
                 <v-btn
                     color="pink"
                     @click="snackbar = false"
                     small
+                    absolute
+                    right
                 >
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
@@ -40,7 +34,7 @@
                             <back-btn></back-btn>
                         </v-card-title>
                         <div class="card-wrapper">
-                            <form id="user_form">
+                            <form id="user-form">
                                 <v-row>
                                     <v-col
                                         cols="12"
@@ -358,11 +352,9 @@
                                                     <div class="card-wrapper">
                                                         <v-treeview
                                                             selectable
-                                                            rounded
                                                             selected-color="primary"
                                                             open-on-click
                                                             :items="items"
-                                                            activatable
                                                             @update:active="updateTreeview"
                                                             @input="updateTreeview"
                                                             :value="user.rights"
@@ -409,7 +401,7 @@
         validations: {
             user: {
                 first_name: {required, maxLength: maxLength(10)},
-                username: {required, maxLength: maxLength(10) },
+                username: {required, maxLength: maxLength(20) },
                 contact_number: {required, maxLength: maxLength(20)},
                 last_name: {required, maxLength: maxLength(10)},
                 email: {required, email},
@@ -511,37 +503,30 @@
                     data: this.user
                 }).then((response) => {
                     if (response.data.status == 'error' && response.data.error_type == 'validation') {
-                        if (response.data.email_error) {
-                            this.snackbar = true;
-                            this.snackbar_text = this.__('message.has_been_selected', [this.__('message.email')])
-                            return;
-                        }
-                        if (response.data.username_error) {
-                            this.snackbar = true;
-                            this.snackbar_text = this.__('message.has_been_selected', [this.__('message.username')])
-                            return;
-                        }
+                        this.snackbar = true;
+                        this.snackbar_icon = response.data.icon;
+                        this.snackbar_text = response.data.error_message
+                        return;
                     } else {
                         if (this.user.action == 'add') {
                             this.resetForm(this.user);
                             this.user.action = 'add';
                             this.$v.user.$reset();
                         }
-                        this.show_alert = true;
-                        this.alert_text = response.data.message;
-                        this.alert_type = response.data.status;
+                        this.snackbar = true;
+                        this.snackbar_text = response.data.message;
+                        this.snackbar_icon = response.data.icon;
+                        this.snackbar_color = response.data.status;
                     }
+                    this.show_loader = false;
                 })
-                this.show_loader = false;
                 if (this.user.action != 'add') {
                     this.getUser();
                 }
             },
             getUser() {
-                var user_id = null;
                 if (this.$route.params.id) {
-                    user_id = this.$route.params.id
-                    axios.get('/user-data', {params: {id: user_id, locked: false}}).then((response) => {
+                    axios.get('/user-data', {params: {id: this.$route.params.id, locked: false}}).then((response) => {
                         this.user = response.data.user;
                         this.user.rights = response.data.user.rights.values;
                         this.logs = response.data.log;

@@ -207,6 +207,17 @@
 
     /**
      *
+     * status change
+     *
+     * @param $type, $id, $value
+     *
+     */
+    function changeStatus($type, $id, $value) {
+        return DB::table($type)->where('id', $id)->update(['status' => $value]);
+    }
+
+    /**
+     *
      * send Mail
      *
      *
