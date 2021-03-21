@@ -87,7 +87,17 @@
                         </template>
 
                         <template>
-                            <v-list-item v-if="haveRight('settings.setting')" :to="{name: 'emailTemplates'}" link>
+                            <v-list-item v-if="haveRight('shop_setting.shop_settings')" :to="{name: 'shopSetup'}" link>
+                                <v-list-item-content>
+                                    <v-list-item-title>
+                                        {{ __('message.shop-setup') }}
+                                    </v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </template>
+
+                        <template>
+                            <v-list-item v-if="haveRight('settings.setting')">
                                 <v-list-item-content>
                                     <v-list-item-title>
                                         {{ __('message.setting') }}

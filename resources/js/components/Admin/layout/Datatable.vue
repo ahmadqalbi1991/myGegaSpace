@@ -128,6 +128,6 @@
                 }
             }
         },
-        props: ['headers', 'items', 'view', 'edit', 'delete_permission', 'to', 'type', 'show_loader', 'edit_path']
+        props: ['headers', 'items', 'view', 'edit', 'delete_permission', 'to', 'change_status', 'type', 'show_loader', 'edit_path']
     }
 </script>

@@ -90,7 +90,7 @@
                     <v-card
                         :loading="show_loader"
                         elevation="10"
-                        max-height="525px"
+                        max-height="365px"
                     >
                         <div class="card-wrapper">
                             <div v-show="user.role" class="card-info">
@@ -124,7 +124,7 @@
                     <v-card
                         :loading="show_loader"
                         elevation="10"
-                        max-height="525px"
+                        max-height="365px"
                     >
                         <v-timeline
                             dense

@@ -212,6 +212,7 @@ class UsersController extends Controller
                     Log::create($log);
                 } else {
                     $status = "error";
+                    $icon = 'warning';
                     $message = __('message.something_went_wrong');
                 }
             }

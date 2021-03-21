@@ -1,6 +1,7 @@
 <?php
 return [
     'dashboard' => 'Dashboard',
+    'shop' => 'Shop',
     'shop-setup' => 'Shop Setting',
     'shop-setup-note' => 'Setp your store information. This information will show on your shop.',
     'shop-name' => 'Shop Name',

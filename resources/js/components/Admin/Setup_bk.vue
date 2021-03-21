@@ -16,24 +16,6 @@
                                                     <form @submit.prevent="saveSetting">
                                                         <div class="shop-form">
                                                             <div class="row">
-                                                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <label for="shop_name">{{ __('admin.shop-name') }} <span class="required_label">*</span></label>
-                                                                        <input v-model="form.shop_name" :class="{ 'is-invalid': form.errors.has('shop_name') }"
-                                                                        type="text" name="shop_name" class="form-control" id="shop_name" placeholder="Please enter shop name">
-                                                                        <has-error :form="form" field="shop_name"></has-error>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-6">
-                                                                    <div class="form-group">
-                                                                        <label for="shop_name">{{ __('admin.shop-email') }} <span class="required_label">*</span></label>
-                                                                        <input v-model="form.shop_email" :class="{ 'is-invalid': form.errors.has('shop_email') }"
-                                                                        type="text" class="form-control" name="shop_email" id="shop_email" placeholder="Please enter shop email address">
-                                                                        <has-error :form="form" field="shop_email"></has-error>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
                                                                 <div class="col-sm-4">
                                                                     <div class="form-group">
                                                                         <label for="country">{{ __('shop.country') }}</label>

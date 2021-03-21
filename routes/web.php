@@ -21,7 +21,6 @@ Route::post("/login", "Auth\LoginController@login")->middleware('guest');
 // Protected Routes - allows only logged in admin
 Route::group(['middleware' => ['auth', 'admin', 'rights:dashboard']], function () {
     Route::get('/dashboard', 'Admin\DashboardController@index')->name("dashboard");
-    Route::get('/users', 'Admin\DashboardController@index')->name("users");
     Route::post('/save-setting', 'Admin\ShopSetupController@saveGeneralSetting');
     Route::get('/shop-setting', 'Admin\ShopSetupController@getShopSetting');
     Route::get('/users-data', 'Admin\UsersController@index');

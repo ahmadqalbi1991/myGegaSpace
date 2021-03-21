@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Country;
+use App\State;
+use App\City;
 
 class Shop extends Model
 {
@@ -10,9 +13,9 @@ class Shop extends Model
     protected $fillable = [
         'shop_name',
         'shop_email',
-        'country',
-        'state',
-        'city',
+        'country_id',
+        'state_id',
+        'city_id',
         'country_code',
         'contact_number',
         'address',
@@ -25,20 +28,40 @@ class Shop extends Model
         'logo',
         'favicon',
         'is_active',
-        'country_code'
+        'country_code',
+        'new_products',
+        'partners',
+        'services',
+        'categories',
+        'contact_section',
+        'featured_products',
+        'subscribe',
+        'recent_products',
+        'customer_section',
+        'about_us'
     ];
 
     /**
-     * 
+     *
      * Get Logo
-     * 
+     *
      * @param $id
-     * 
+     *
      * @return $logo
-     * 
+     *
      */
     public static function getLogo($id)
     {
         return self::where("id", $id)->select("logo")->first();
+    }
+
+    public function country() {
+        return $this->belongsTo(Country::class);
+    }
+    public function state() {
+        return $this->belongsTo(State::class);
+    }
+    public function city() {
+        return $this->belongsTo(City::class);
     }
 }

@@ -20,28 +20,22 @@ class ShopSetupController extends Controller
 
     public function savegeneralSetting(Request $request)
     {
-        $this->validate($request, [
-            'shop_name' => 'required',
-            'shop_email' => 'required|email',
-            'country' => 'required',
-            'state' => '',
-            'city' => '',
-            'contact_number' => 'required|max:15',
-            'address' => 'required',
-            'facebook_url' => 'url|nullable',
-            'linkedin_url' => 'url|nullable',
-            'twitter_url' => 'url|nullable',
-            'instagram_url' => 'url|nullable',
-            'google_url' => 'url|nullable',
-            'youtube_url' => 'url|nullable',
-            'logo' => '',
-            'favicon' => ''
-        ]);
-
         $input = $request->input();
-
         $action = $input['action'];
+        $input['country_id'] = $input['country']['id'];
+        $input['state_id'] = $input['state']['id'];
+        $input['city_id'] = $input['city']['id'];
+
+        unset($input['country_name']);
+        unset($input['state_name']);
+        unset($input['city_name']);
+        unset($input['city']);
+        unset($input['country']);
+        unset($input['state']);
+        unset($input['logo_path']);
+        unset($input['favicon_path']);
         unset($input['action']);
+
         $imageExtensions = ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'svg', 'svgz', 'cgm', 'djv', 'djvu', 'ico', 'ief','jpe', 'pbm', 'pgm', 'pnm', 'ppm', 'ras', 'rgb', 'tif', 'tiff', 'wbmp', 'xbm', 'xpm', 'xwd'];
 
         // upload Logo
@@ -72,25 +66,37 @@ class ShopSetupController extends Controller
             $result = Shop::create($input);
             if ($result) {
                 $status = "success";
-                $message = __("message.shop_add_success");
+                $icon = "checked";
+                $message = __("message.add_success", ['key' => __('message.shop')]);
             } else {
                 $status = "error";
+                $icon = 'warning';
                 $message = __('message.something_went_wrong');
             }
         }
         else {
             // update shop
-            $result = Shop::where('id', $input['id'])->update($input);
-            if ($result) {
-                $status = "success";
-                $message = __("message.shop_update_success");
+            $input['updated_at'] = date('Y-m-d');
+            $shop = Shop::find($input['id']);
+            $result = $shop->fill($input)->save();
+            if(!$shop->wasChanged()) {
+                $status = "warning";
+                $icon = 'warning';
+                $message = __("message.no_changes");
             } else {
-                $status = "error";
-                $message = __('message.something_went_wrong');
+                if ($result) {
+                    $status = "success";
+                    $icon = 'check';
+                    $message = __("message.update_success", ['key' => __('message.shop')]);
+                } else {
+                    $status = "error";
+                    $icon = 'warning';
+                    $message = __('message.something_went_wrong');
+                }
             }
         }
 
-        return ['status' => $status, 'message' => $message];
+        return ['status' => $status, 'message' => $message, 'icon' => $icon];
 
     }
 
@@ -105,11 +111,15 @@ class ShopSetupController extends Controller
     public function getShopSetting()
     {
         $shop = Shop::where(['is_active' => 1])->first();
+
         if ($shop) {
             $logo_path = '/shop/logos/'.$shop->logo;
             $logo_path = Storage::url($logo_path);
             $favicon_path = '/shop/logos/'.$shop->favicon;
             $favicon_path = Storage::url($favicon_path);
+            $shop->country_name = isset($shop->country->name) ? $shop->country->name : NULL;
+            $shop->state_name = isset($shop->state->name) ? $shop->state->name : NULL;
+            $shop->city_name = isset($shop->city->name) ? $shop->city->name : NULL;
             if (File::exists(public_path($logo_path))) {
                 $logo_path = asset('storage/shop/logos/'.$shop->logo);
             } else {
