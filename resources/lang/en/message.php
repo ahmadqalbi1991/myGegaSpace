@@ -84,7 +84,7 @@ return [
     'oh' => 'Oh!',
     'back' => 'Back',
     'cnic' => 'Identity Card Number',
-    'choose_profile_pic' => 'Select Profile Picture',
+    'choose_pic' => 'Select :key Picture',
     'no_changes' => 'No changes has been made',
     'mustBeValid' => ':key must be valid',
     'no_log' => 'No Logs',
@@ -105,7 +105,7 @@ return [
     'actions' => 'Actions',
     'setting' => 'Setting',
     'settings' => 'Settings',
-    'email_templates' => 'Email Templates',
+    'email_templates' => 'EmailTemplates',
     'email_template' => 'Email Template',
     'subject' => 'Subject',
     'type' => 'Type',
@@ -124,5 +124,12 @@ return [
     'single' => 'Single',
     'divorced' => 'Divorced',
     'married' => 'Married',
-    'separated' => 'Separated'
+    'separated' => 'Separated',
+    'brands' => 'Brands',
+    'brand' => 'Brand',
+    'brand_name' => 'Brand Name',
+    'brand_added_log' => ':brand added successfully',
+    'brand_update_log' => ':brand updated successfully',
+    'total_products' => 'Total Products',
+    'search_brand' => 'Search Brand'
 ];

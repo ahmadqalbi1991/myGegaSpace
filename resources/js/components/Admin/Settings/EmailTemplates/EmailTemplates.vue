@@ -26,18 +26,17 @@
                 :loading="show_loader"
             >
                 <v-card-title>
-                    {{ __('message.users') }}
-                    <add-btn :right="haveRight('users.add_user')" :type="__('message.user')" to="/add-user"></add-btn>
+                    {{ __('message.email_templates') }}
+                    <add-btn :right="haveRight('email_templates.add_email_template')" :type="__('message.email_template')" :to="{name: 'addEmailTemplate'}"></add-btn>
                 </v-card-title>
                 <datatable
                     :headers="headers"
                     :items="items"
-                    :view="haveRight('users.view_user')"
-                    :delete_permission="haveRight('users.delete_user')"
-                    :change_status="haveRight('users.change_status_for_user')"
-                    :to="view_path"
-                    :delete-path="delete_path"
-                    type="User"
+                    :view="null"
+                    :edit="haveRight('email_templates.edit_email_template')"
+                    :to="null"
+                    edit_path="editEmailTemplate"
+                    :type="__('message.email_template')"
                     @resetData="resetData"
                     :show_loader="show_loader"
                 ></datatable>
@@ -47,28 +46,26 @@
 </template>
 
 <script>
-    import datatable from './layout/Datatable.vue'
-    import shop_loader from './layout/Loader.vue'
-    import add_btn from './ui/AddButton.vue'
+    import datatable from '../../layout/Datatable.vue'
+    import add_btn from '../../ui/AddButton.vue'
 
     export default {
-        name: "Users.vue",
+        name: "EmailTemplates.vue",
         data() {
             return {
                 headers: [
                     {
-                        text: '',
+                        text: '#',
                         align: 'start',
-                        value: 'image',
+                        value: 'sr',
                     },
                     {
-                        text: this.__('message.name'),
-                        value: 'name'
+                        text: this.__('message.subject'),
+                        value: 'subject'
                     },
                     {
-                        text: this.__('message.email'),
-                        value: 'email',
-                        sortable: false,
+                        text: this.__('message.type'),
+                        value: 'type',
                     },
                     {
                         text: this.__('message.status'),
@@ -76,38 +73,35 @@
                         sortable: false,
                     },
                     {
-                        text: this.haveRight('users.view_user') || this.haveRight('users.delete_user') ? this.__('message.actions') : null,
+                        text: this.haveRight('email_templates.edit_email_template') ? this.__('message.actions') : null,
                         value: 'hash_id',
                         sortable: false,
                     },
                 ],
                 items: [],
                 show_loader: true,
-                view_path: 'viewUser',
-                delete_path: 'deleteUser'
             }
         },
         methods: {
-            getUsers() {
+            getEmailTemplates() {
                 this.show_loader = true;
-                axios.get('/users-data').then((response) => {
+                axios.get('/emails-templates-data').then((response) => {
                     this.items = response.data;
                     this.show_loader = false;
                 });
             },
             resetData() {
                 setTimeout(() => [
-                    this.getUsers()
+                    this.getEmailTemplates()
                 ], 200)
             }
         },
         components: {
             'datatable': datatable,
-            'shop-loader': shop_loader,
             'add-btn': add_btn,
         },
         async mounted() {
-            await this.getUsers();
+            await this.getEmailTemplates();
         }
     }
 </script>

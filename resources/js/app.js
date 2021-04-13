@@ -74,33 +74,36 @@ let routes = [
     {path: '/dashboard',
     name: 'dashboard',
     component: () => import(/* webpackPrefetch: true */ './components/Admin/Dashboard.vue') },
+    {path: '/brands',
+    name: 'brands',
+    component: () => import(/* webpackPrefetch: true */ './components/Admin/Brands/Brands.vue') },
     {path: '/shop-setup',
     name: 'shopSetup',
-    component: () => import(/* webpackPrefetch: true */'./components/Admin/ShopSetup.vue') },
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/Settings/ShopSetup.vue') },
     {path: '/home-setup',
     name: 'homeSetup',
     component: () => import(/* webpackPrefetch: true */'./components/Admin/HomeSetup.vue') },
     {path: '/users',
     name: 'users',
-    component: () => import(/* webpackPrefetch: true */'./components/Admin/Users.vue') },
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/Users/Users.vue') },
     {path: '/view-user/:id',
     name: 'viewUser',
-    component: () => import(/* webpackPrefetch: true */'./components/Admin/User.vue') },
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/Users/User.vue') },
     {path: '/edit-user/:id',
     name: 'editUser',
-    component: () => import(/* webpackPrefetch: true */'./components/Admin/UserForm.vue') },
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/Users/UserForm.vue') },
     {path: '/add-user',
     name: 'addUser',
-    component: () => import(/* webpackPrefetch: true */'./components/Admin/UserForm.vue') },
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/Users/UserForm.vue') },
     {path: '/email-templates',
     name: 'emailTemplates',
-    component: () => import(/* webpackPrefetch: true */'./components/Admin/EmailTemplates.vue') },
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/Settings/EmailTemplates/EmailTemplates.vue') },
     {path: '/edit-email-template/:id',
     name: 'editEmailTemplate',
-    component: () => import(/* webpackPrefetch: true */'./components/Admin/EmailTemplateForm.vue') },
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/Settings/EmailTemplates/EmailTemplateForm.vue') },
     {path: '/add-email-template',
     name: 'addEmailTemplate',
-    component: () => import(/* webpackPrefetch: true */'./components/Admin/EmailTemplateForm.vue') },
+    component: () => import(/* webpackPrefetch: true */'./components/Admin/Settings/EmailTemplates/EmailTemplateForm.vue') },
 ]
 
 const router = new VueRouter({
@@ -174,14 +177,6 @@ Vue.mixin({
                 id: id,
                 dark_theme: theme
             });
-        },
-        deleteRecord(type, id) {
-            this.show_loader = true;
-            axios.delete('/delete-record', {params: {type: type, id:id}}).then((response) => {
-                this.dialog = false;
-                this.show_loader = false;
-                this.$emit('resetData');
-            })
         },
         changeStatus(id, value, type) {
             if (value == 'Active') {

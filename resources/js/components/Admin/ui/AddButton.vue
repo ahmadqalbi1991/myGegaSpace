@@ -8,10 +8,12 @@
         :to="to"
         color="primary"
     >
-        <v-icon>
+        {{ __('message.add') + " " + type }}
+        <v-icon
+            right
+        >
             mdi-plus
         </v-icon>&nbsp;
-        {{ __('message.add') + " " + type }}
     </v-btn>
 </template>
 

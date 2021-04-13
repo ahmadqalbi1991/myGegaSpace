@@ -3,7 +3,6 @@
         <v-main>
             <nav-bar></nav-bar>
             <router-view></router-view>
-            <vue-progress-bar></vue-progress-bar>
         </v-main>
     </v-app>
 </template>

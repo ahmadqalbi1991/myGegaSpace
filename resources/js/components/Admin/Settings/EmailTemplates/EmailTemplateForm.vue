@@ -127,7 +127,7 @@
 </template>
 
 <script>
-    import back_btn from './ui/BackButton.vue'
+    import back_btn from '../../ui/BackButton.vue'
     import {validationMixin} from 'vuelidate'
     import {required} from 'vuelidate/lib/validators'
 

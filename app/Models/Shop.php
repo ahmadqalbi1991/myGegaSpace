@@ -40,6 +40,7 @@ class Shop extends Model
         'customer_section',
         'about_us'
     ];
+    protected $hidden = ['created_at', 'updated_at'];
 
     /**
      *

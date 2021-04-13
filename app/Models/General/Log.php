@@ -8,4 +8,5 @@ class Log extends Model
 {
     protected $table = 'logs';
     protected $fillable = ['user_id', 'log'];
+    protected $hidden = ['created_at', 'updated_at'];
 }

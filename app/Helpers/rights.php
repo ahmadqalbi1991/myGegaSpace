@@ -143,7 +143,7 @@ function havePermissions()
  *
  * Rigths
  *
- * @return rights
+ * @return array
  *
  */
 function rights()
@@ -154,6 +154,12 @@ function rights()
             'add_setting' => 1,
             'edit_setting' => 1,
             'shop_settings' => 1
+        ],
+        'brands' => [
+            'brands_list' => 1,
+            'add_brand' => 1,
+            'edit_brand' => 1,
+            'delete_brand' => 1
         ],
         'users' => [
             'user_list' => 1,

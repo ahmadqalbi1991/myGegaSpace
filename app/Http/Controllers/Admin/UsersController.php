@@ -43,10 +43,10 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         $users = User::where('is_admin', 1)
-            ->where('role', '<>', 'Super Admin')
-            ->when(Auth::user()->id, function ($q) {
-                return $q->where('id', '<>', Auth::user()->id);
-            })
+//            ->where('role', '<>', 'Super Admin')
+//            ->when(Auth::user()->id, function ($q) {
+//                return $q->where('id', '<>', Auth::user()->id);
+//            })
             ->get();
 
         $data = [];

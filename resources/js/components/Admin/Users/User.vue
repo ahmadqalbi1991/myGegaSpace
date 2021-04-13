@@ -185,8 +185,8 @@
 </template>
 
 <script>
-    import shop_loader from './layout/Loader.vue'
-    import back_btn from './ui/BackButton.vue'
+    import shop_loader from '../layout/Loader.vue'
+    import back_btn from '../ui/BackButton.vue'
 
     export default {
         data() {

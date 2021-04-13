@@ -56,6 +56,15 @@
                         </v-list-item-title>
                     </v-list-item>
 
+                    <v-list-item v-if="haveRight('brands.brands_list')" :to="{name: 'brands'}" link>
+                        <v-list-item-icon>
+                            <v-icon>reorder</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>
+                            {{ __('message.brands') }}
+                        </v-list-item-title>
+                    </v-list-item>
+
                     <v-list-item v-if="haveRight('users.user_list')" :to="{name: 'users'}" link>
                         <v-list-item-icon>
                             <v-icon>groups</v-icon>

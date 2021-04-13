@@ -21,6 +21,10 @@ Route::post("/login", "Auth\LoginController@login")->middleware('guest');
 // Protected Routes - allows only logged in admin
 Route::group(['middleware' => ['auth', 'admin', 'rights:dashboard']], function () {
     Route::get('/dashboard', 'Admin\DashboardController@index')->name("dashboard");
+    Route::get('/brands-list', 'Admin\BrandsController@index');
+    Route::post('/save-brand', 'Admin\BrandsController@saveBrand');
+    Route::get('/brand-data', 'Admin\BrandsController@getBrand');
+    Route::get('/delete-brand', 'Admin\BrandsController@deleteBrand');
     Route::post('/save-setting', 'Admin\ShopSetupController@saveGeneralSetting');
     Route::get('/shop-setting', 'Admin\ShopSetupController@getShopSetting');
     Route::get('/users-data', 'Admin\UsersController@index');
@@ -44,3 +48,5 @@ Route::get('get-countries', 'Misc\MiscController@getCountries');
 Route::get('get-states', 'Misc\MiscController@getStates');
 Route::get('get-cities', 'Misc\MiscController@getCities');
 Route::get('get-country-code', 'Misc\MiscController@getCountryCode');
+
+Route::get('test', 'Admin\BrandsController@index');

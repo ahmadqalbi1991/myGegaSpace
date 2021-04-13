@@ -29,7 +29,7 @@ class EmailTemplatesController extends Controller
     }
     /**
      *
-     * Email Templates Listing
+     * EmailTemplates Listing
      *
      * @param $request
      *

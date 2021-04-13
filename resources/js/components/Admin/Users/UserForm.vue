@@ -325,7 +325,7 @@
                                     >
                                         <v-file-input
                                             accept="image/*"
-                                            :label="__('message.choose_profile_pic')"
+                                            :label="__('message.choose_pic', [__('message.profile')])"
                                             prepend-icon="mdi-camera"
                                             counter
                                             show-size
@@ -402,7 +402,7 @@
 </template>
 
 <script>
-    import back_btn from './ui/BackButton.vue'
+    import back_btn from '../ui/BackButton.vue'
     import {validationMixin} from 'vuelidate'
     import {required, sameAs, maxLength, email, numeric, isUnique} from 'vuelidate/lib/validators'
 

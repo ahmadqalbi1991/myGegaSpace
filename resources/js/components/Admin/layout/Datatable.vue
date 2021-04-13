@@ -3,11 +3,12 @@
         :headers="headers"
         :items="items"
         class="elevation-1"
+        hide-default-footer
     >
         <template v-slot:item.image="{item}">
             <v-avatar
                 v-if="item.image"
-                size="50"
+                size="35"
             >
                 <img
                     :src="item.image"
@@ -62,53 +63,9 @@
                     create
                 </v-icon>
             </v-btn>
-            <v-btn
-                v-if="delete_permission"
-                color="error"
-                class="ma-2 white--text"
-                small
-                @click.stop="showDialog(item.id)"
-            >
-                {{ __('message.delete') }}
-                <v-icon
-                    right
-                >
-                    mdi-delete
-                </v-icon>
-            </v-btn>
-            <v-dialog
-                v-model="dialog"
-                max-width="500"
-            >
-                <v-card>
-                    <v-card-title class="headline">
-                        <span class="material-icons"> warning</span>&nbsp; {{ __('message.warning') }}
-                    </v-card-title>
 
-                    <v-card-text>
-                        {{ __('message.delete_confirm', [type]) }}
-                    </v-card-text>
 
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
 
-                        <v-btn
-                            color="primary"
-                            @click="dialog = false"
-                        >
-                            {{ __('message.cancel') }}
-                        </v-btn>
-
-                        <v-btn
-                            color="error"
-                            @click="deleteRecord(type, deleteId)"
-                            :loading="show_loader"
-                        >
-                            {{ __('message.confirm') }}
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-dialog>
         </template>
     </v-data-table>
 </template>
@@ -121,13 +78,15 @@
             }
         },
         methods: {
-            showDialog(id) {
-                if (id) {
-                    this.deleteId = id;
-                    this.dialog = true;
-                }
+
+            editData(id) {
+                this.$emit('editRecord', id);
+            },
+            deleteRecord(id) {
+                this.$emit('deleteRecord', id);
+                this.dialog = false;
             }
         },
-        props: ['headers', 'items', 'view', 'edit', 'delete_permission', 'to', 'change_status', 'type', 'show_loader', 'edit_path']
+        props: ['headers', 'items', 'view', 'edit', 'delete_permission', 'to', 'change_status', 'type', 'edit_path', 'edit_modal', 'show_loader']
     }
 </script>

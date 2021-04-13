@@ -15,6 +15,7 @@ class EmailTemplates extends Model
         'show_login_btn',
         'status'
     ];
+    protected $hidden = ['created_at', 'updated_at'];
 
     /**
      * Get Templates
