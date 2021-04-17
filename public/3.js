@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[3],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/UserForm.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/UserForm.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Users/User.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Users/User.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -11,11 +11,8 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ui_BackButton_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ui/BackButton.vue */ "./resources/js/components/Admin/ui/BackButton.vue");
-/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
-/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vuelidate__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _ui_BackButton_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ui/BackButton.vue */ "./resources/js/components/Admin/ui/BackButton.vue");
+/* harmony import */ var _ui_Loader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ui/Loader.vue */ "./resources/js/components/Admin/ui/Loader.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -205,220 +202,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mixins: [vuelidate__WEBPACK_IMPORTED_MODULE_2__["validationMixin"]],
-  validations: {
-    user: {
-      first_name: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["required"],
-        maxLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["maxLength"])(10)
-      },
-      username: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["required"],
-        maxLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["maxLength"])(10)
-      },
-      contact_number: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["required"],
-        maxLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["maxLength"])(20)
-      },
-      last_name: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["required"],
-        maxLength: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["maxLength"])(10)
-      },
-      email: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["required"],
-        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["email"]
-      },
-      confirm_email: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["required"],
-        sameAsEmail: Object(vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["sameAs"])('email')
-      },
-      identity_card_number: {
-        numeric: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["numeric"]
-      }
-    },
-    select: {
-      required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__["required"]
-    },
-    checkbox: {
-      checked: function checked(val) {
-        return val;
-      }
-    }
-  },
   data: function data() {
     return {
-      martial_statuses: ['single', 'married', 'divorced', 'separated'],
-      roles: [],
       user: {
         id: '',
         name: '',
         first_name: '',
         last_name: '',
         email: '',
-        confirm_email: '',
         email_verified_at: '',
         gender: '',
         image: '',
         rights: '',
         role: '',
-        action: 'add',
         address: '',
         contact_number: '',
         blood_group: '',
@@ -428,12 +227,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         city_name: '',
         state_name: '',
         country_name: '',
-        hash_id: '',
-        username: ''
+        hash_id: ''
       },
       logs: [],
-      isEditable: false,
-      show_loader: true,
       user_img_placeholder: '',
       all_rights: [],
       values: [],
@@ -441,98 +237,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    makeImage: function makeImage(event) {
-      // const img_preview = event.target.files[0];
-      this.user_img_placeholder = URL.createObjectURL(this.user.image); // if (!img_preview) {
-      //     return false;
-      // } else {
-      //     this.createImgData(img_preview);
-      //
-      // }
-    },
-    createImgData: function createImgData(file) {
+    getUser: function getUser() {
       var _this = this;
 
-      var reader = new FileReader();
-
-      reader.onload = function (file) {
-        _this.user.image = reader.result;
-      };
-
-      reader.readAsDataURL(file);
-    },
-    checkNumeric: function checkNumeric(label, key) {
-      var errors = [];
-      if (!key.$dirty) return errors;
-      !key.numeric && errors.push(this.__('message.mustNumeric', [label]));
-      return errors;
-    },
-    save: function save(date) {
-      this.$refs.menu.save(date);
-    },
-    nameError: function nameError(label, key) {
-      var errors = [];
-      if (!key.$dirty) return errors;
-      !key.maxLength && errors.push(this.__('message.maxLength', [label]));
-      !key.required && errors.push(this.__('message.mustRequired', [label]));
-      return errors;
-    },
-    emailErrors: function emailErrors() {
-      var errors = [];
-      if (!this.$v.user.email.$dirty) return errors;
-      !this.$v.user.email.email && errors.push('Must be valid e-mail');
-      !this.$v.user.email.required && errors.push('E-mail is required');
-      return errors;
-    },
-    confirmField: function confirmField(label, key) {
-      var errors = [];
-      if (!key.$dirty) return errors;
-      !key.sameAsEmail && errors.push(this.__('message.mustBeSame', [label]));
-      !key.required && errors.push(this.__('message.mustRequired', [label]));
-      return errors;
-    },
-    rolesList: function rolesList() {
-      var roles = [];
-      roles.push(this.__('message.super_admin'));
-      roles.push(this.__('message.admin'));
-      roles.push(this.__('message.accountant'));
-      roles.push(this.__('message.manager'));
-      roles.push(this.__('message.customer'));
-      roles.push(this.__('message.user'));
-      this.roles = roles;
-    },
-    submit: function submit() {
-      this.$v.$touch();
-    },
-    getUser: function getUser() {
-      var _this2 = this;
-
       this.show_loader = true;
-      var user_id = null;
-
-      if (this.$route.params.id) {
-        user_id = this.$route.params.id;
-      }
-
       axios.get('/user-data', {
         params: {
-          id: user_id
+          id: this.$route.params.id,
+          locked: true
         }
       }).then(function (response) {
-        _this2.user = response.data.user;
-        _this2.items = response.data.user.rights.treeview;
-        _this2.values = response.data.user.rights.values;
-        _this2.logs = response.data.log;
-        _this2.show_loader = false;
-        _this2.isEditable = true;
-        _this2.user.action = 'edit';
-        _this2.user.confirm_email = _this2.user.email;
+        _this.user = response.data.user;
+        _this.items = response.data.user.rights.treeview;
+        _this.values = response.data.user.rights.values;
+        _this.logs = response.data.log;
+        _this.show_loader = false;
 
-        _this2.getStates(_this2.user.country_name);
-
-        _this2.getCities(_this2.user.state_name);
-
-        _this2.checkImg();
+        _this.checkImg();
       });
     },
     checkImg: function checkImg() {
@@ -551,13 +272,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           this.user_img_placeholder = '../img/placeholder.png';
         }
       }
+    },
+    open: function open(event) {
+      var ele = event.target;
+
+      if (ele.getElementsByClassName('arrow')[0].classList.contains("rotate")) {
+        ele.getElementsByClassName('arrow')[0].classList.remove("rotate");
+      } else {
+        ele.getElementsByClassName('arrow')[0].classList.add("rotate");
+      }
     }
   },
   components: {
-    'back-btn': _ui_BackButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    'back-btn': _ui_BackButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    'loader': _ui_Loader_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  created: function created() {
+    this.all_rights = window._rights;
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
@@ -565,14 +299,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this3.getUser();
+              return _this2.getUser();
 
             case 2:
-              _this3.rolesList();
-
-              _this3.getCountries();
-
-            case 4:
             case "end":
               return _context.stop();
           }
@@ -612,10 +341,86 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/UserForm.vue?vue&type=template&id=4c0f348c&":
-/*!*****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/UserForm.vue?vue&type=template&id=4c0f348c& ***!
-  \*****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/ui/Loader.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/ui/Loader.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Loader",
+  props: ['show_loader']
+});
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Users/User.vue?vue&type=style&index=0&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Users/User.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nlabel {\n    font-weight: 100 !important;\n    font-size: 16px;\n}\n.timeline-overflow {\n    max-height: inherit;\n    overflow-y: auto;\n}\n.v-timeline-item {\n    padding-bottom: 15px !important;\n}\n.timeline-date-dark {\n    font-size: 12px;\n    color: #2196f3;\n    font-style: italic;\n}\n.timeline-date-light {\n    font-size: 12px;\n    color: #3f51b5;\n    font-style: italic;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Users/User.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Users/User.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./User.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Users/User.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Users/User.vue?vue&type=template&id=18aef846&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Users/User.vue?vue&type=template&id=18aef846& ***!
+  \*******************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -630,6 +435,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("loader", { attrs: { show_loader: _vm.show_loader } }),
+      _vm._v(" "),
       _c(
         "v-container",
         [
@@ -643,14 +450,14 @@ var render = function() {
                 [
                   _c(
                     "v-card",
-                    { attrs: { loading: _vm.show_loader, elevation: "10" } },
+                    { attrs: { elevation: "10" } },
                     [
                       _c(
                         "v-card-title",
                         [
                           _c("h3", [
                             _vm._v(
-                              _vm._s(_vm._f("captilize")(_vm.user.action)) +
+                              _vm._s(_vm.__("message.user's")) +
                                 " " +
                                 _vm._s(_vm.__("message.profile"))
                             )
@@ -661,799 +468,528 @@ var render = function() {
                         1
                       ),
                       _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "card-wrapper" },
+                        [
+                          _c(
+                            "v-row",
+                            { attrs: { "no-gutters": "", align: "center" } },
+                            [
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    lg: "4",
+                                    md: "6",
+                                    sm: "12"
+                                  }
+                                },
+                                [
+                                  _c("v-avatar", { attrs: { size: "200" } }, [
+                                    _c("img", {
+                                      attrs: {
+                                        src: this.user_img_placeholder,
+                                        alt: _vm.user.name
+                                      }
+                                    })
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-col",
+                                {
+                                  attrs: {
+                                    cols: "12",
+                                    lg: "8",
+                                    md: "6",
+                                    sm: "12"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.user.name,
+                                          expression: "user.name"
+                                        }
+                                      ],
+                                      staticClass: "card-info"
+                                    },
+                                    [
+                                      _c("label", [
+                                        _vm._v(
+                                          _vm._s(_vm.__("message.name")) + " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("h3", [_vm._v(_vm._s(_vm.user.name))]),
+                                      _vm._v(" "),
+                                      _c("v-divider")
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.user.email,
+                                          expression: "user.email"
+                                        }
+                                      ],
+                                      staticClass: "card-info"
+                                    },
+                                    [
+                                      _c("label", [
+                                        _vm._v(
+                                          _vm._s(_vm.__("message.email")) + " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("h3", [
+                                        _vm._v(_vm._s(_vm.user.email))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("v-divider")
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.user.contact_number,
+                                          expression: "user.contact_number"
+                                        }
+                                      ],
+                                      staticClass: "card-info"
+                                    },
+                                    [
+                                      _c("label", [
+                                        _vm._v(
+                                          _vm._s(
+                                            _vm.__("message.contact_number")
+                                          ) + " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("h3", [
+                                        _vm._v(_vm._s(_vm.user.contact_number))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("v-divider")
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "show",
+                                          rawName: "v-show",
+                                          value: _vm.user.address,
+                                          expression: "user.address"
+                                        }
+                                      ],
+                                      staticClass: "card-info"
+                                    },
+                                    [
+                                      _c("label", [
+                                        _vm._v(
+                                          _vm._s(_vm.__("message.address")) +
+                                            " "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("h3", [
+                                        _vm._v(_vm._s(_vm.user.address)),
+                                        _c(
+                                          "span",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm.user.city_name,
+                                                expression: "user.city_name"
+                                              }
+                                            ]
+                                          },
+                                          [
+                                            _vm._v(
+                                              ", " + _vm._s(_vm.user.city_name)
+                                            )
+                                          ]
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm.user.state_name,
+                                                expression: "user.state_name"
+                                              }
+                                            ]
+                                          },
+                                          [
+                                            _vm._v(
+                                              ", " + _vm._s(_vm.user.state_name)
+                                            )
+                                          ]
+                                        ),
+                                        _c(
+                                          "span",
+                                          {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm.user.country_name,
+                                                expression: "user.country_name"
+                                              }
+                                            ]
+                                          },
+                                          [
+                                            _vm._v(
+                                              ", " +
+                                                _vm._s(_vm.user.country_name)
+                                            )
+                                          ]
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("v-divider")
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _vm.haveRight("users.edit_user")
+                                        ? _c(
+                                            "v-btn",
+                                            {
+                                              staticClass: "ma-2 white--text",
+                                              attrs: {
+                                                elevation: "10",
+                                                loading: _vm.show_loader,
+                                                color: "primary",
+                                                to: {
+                                                  name: "editUser",
+                                                  params: {
+                                                    id: _vm.user.hash_id
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                        " +
+                                                  _vm._s(
+                                                    _vm.__("message.edit")
+                                                  ) +
+                                                  "\n                                    "
+                                              )
+                                            ]
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-row",
+            [
+              _c(
+                "v-col",
+                { attrs: { cols: "6", lg: "6", md: "6", sm: "12" } },
+                [
+                  _c(
+                    "v-card",
+                    { attrs: { elevation: "10", "max-height": "365px" } },
+                    [
                       _c("div", { staticClass: "card-wrapper" }, [
                         _c(
-                          "form",
-                          [
-                            _c(
-                              "v-row",
-                              [
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "6",
-                                      md: "6",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        "error-messages": _vm.nameError(
-                                          _vm.__("message.first_name"),
-                                          _vm.$v.user.first_name
-                                        ),
-                                        counter: 10,
-                                        label: _vm.__("message.first_name"),
-                                        required: ""
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          return _vm.$v.user.first_name.$touch()
-                                        },
-                                        blur: function($event) {
-                                          return _vm.$v.user.first_name.$touch()
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.user.first_name,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.user, "first_name", $$v)
-                                        },
-                                        expression: "user.first_name"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "6",
-                                      md: "6",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        "error-messages": _vm.nameError(
-                                          _vm.__("message.last_name"),
-                                          _vm.$v.user.last_name
-                                        ),
-                                        counter: 10,
-                                        label: _vm.__("message.last_name"),
-                                        required: ""
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          return _vm.$v.user.last_name.$touch()
-                                        },
-                                        blur: function($event) {
-                                          return _vm.$v.user.last_name.$touch()
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.user.last_name,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.user, "last_name", $$v)
-                                        },
-                                        expression: "user.last_name"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-row",
-                              [
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "6",
-                                      md: "6",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        "error-messages": _vm.emailErrors(),
-                                        label: _vm.__("message.email"),
-                                        required: ""
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          return _vm.$v.user.email.$touch()
-                                        },
-                                        blur: function($event) {
-                                          return _vm.$v.user.email.$touch()
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.user.email,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.user, "email", $$v)
-                                        },
-                                        expression: "user.email"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "6",
-                                      md: "6",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        "error-messages": _vm.confirmField(
-                                          _vm.__("message.confirm_email"),
-                                          _vm.$v.user.confirm_email
-                                        ),
-                                        label: _vm.__("message.confirm_email"),
-                                        required: ""
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          return _vm.$v.user.confirm_email.$touch()
-                                        },
-                                        blur: function($event) {
-                                          return _vm.$v.user.confirm_email.$touch()
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.user.confirm_email,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.user,
-                                            "confirm_email",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "user.confirm_email"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-row",
-                              [
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("label", [
-                                      _vm._v(_vm._s(_vm.__("message.gender")))
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-radio-group",
-                                      {
-                                        attrs: { row: "" },
-                                        model: {
-                                          value: _vm.user.gender,
-                                          callback: function($$v) {
-                                            _vm.$set(_vm.user, "gender", $$v)
-                                          },
-                                          expression: "user.gender"
-                                        }
-                                      },
-                                      [
-                                        _c("v-radio", {
-                                          attrs: {
-                                            label: _vm.__("message.male"),
-                                            value: "male"
-                                          }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("v-radio", {
-                                          attrs: {
-                                            label: _vm.__("message.female"),
-                                            value: "female"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-checkbox", {
-                                      attrs: {
-                                        label: _vm.__("message.is_admin")
-                                      },
-                                      model: {
-                                        value: _vm.user.is_admin,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.user, "is_admin", $$v)
-                                        },
-                                        expression: "user.is_admin"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-select", {
-                                      attrs: {
-                                        items: _vm.roles,
-                                        label: _vm.__("message.role")
-                                      },
-                                      model: {
-                                        value: _vm.user.role,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.user, "role", $$v)
-                                        },
-                                        expression: "user.role"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-row",
-                              [
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-combobox", {
-                                      attrs: {
-                                        items: _vm.countries,
-                                        label: _vm.__("message.country"),
-                                        "hide-selected": "",
-                                        "small-chips": ""
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.getStates(
-                                            _vm.user.country_name
-                                          )
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.user.country_name,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.user,
-                                            "country_name",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "user.country_name"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-combobox", {
-                                      attrs: {
-                                        items: _vm.states,
-                                        label: _vm.__("message.state"),
-                                        "hide-selected": "",
-                                        "small-chips": ""
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.getCities(
-                                            _vm.user.state_name
-                                          )
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.user.state_name,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.user, "state_name", $$v)
-                                        },
-                                        expression: "user.state_name"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-combobox", {
-                                      attrs: {
-                                        items: _vm.cities,
-                                        label: _vm.__("message.city"),
-                                        "hide-selected": "",
-                                        "small-chips": ""
-                                      },
-                                      model: {
-                                        value: _vm.user.city_name,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.user, "city_name", $$v)
-                                        },
-                                        expression: "user.city_name"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-row",
-                              [
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-select", {
-                                      attrs: {
-                                        items: _vm.blood_groups,
-                                        label: _vm.__("message.blood_group")
-                                      },
-                                      model: {
-                                        value: _vm.user.blood_group,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.user, "blood_group", $$v)
-                                        },
-                                        expression: "user.blood_group"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "v-menu",
-                                      {
-                                        ref: "menu",
-                                        attrs: {
-                                          "close-on-content-click": false,
-                                          transition: "scale-transition",
-                                          "offset-y": "",
-                                          "min-width": "auto"
-                                        },
-                                        scopedSlots: _vm._u([
-                                          {
-                                            key: "activator",
-                                            fn: function(ref) {
-                                              var on = ref.on
-                                              var attrs = ref.attrs
-                                              return [
-                                                _c(
-                                                  "v-text-field",
-                                                  _vm._g(
-                                                    _vm._b(
-                                                      {
-                                                        attrs: {
-                                                          label:
-                                                            "Birthday date",
-                                                          "prepend-icon":
-                                                            "mdi-calendar",
-                                                          readonly: ""
-                                                        },
-                                                        model: {
-                                                          value:
-                                                            _vm.user
-                                                              .date_of_birth,
-                                                          callback: function(
-                                                            $$v
-                                                          ) {
-                                                            _vm.$set(
-                                                              _vm.user,
-                                                              "date_of_birth",
-                                                              $$v
-                                                            )
-                                                          },
-                                                          expression:
-                                                            "user.date_of_birth"
-                                                        }
-                                                      },
-                                                      "v-text-field",
-                                                      attrs,
-                                                      false
-                                                    ),
-                                                    on
-                                                  )
-                                                )
-                                              ]
-                                            }
-                                          }
-                                        ]),
-                                        model: {
-                                          value: _vm.menu,
-                                          callback: function($$v) {
-                                            _vm.menu = $$v
-                                          },
-                                          expression: "menu"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(" "),
-                                        _c("v-date-picker", {
-                                          ref: "picker",
-                                          attrs: {
-                                            max: new Date()
-                                              .toISOString()
-                                              .substr(0, 10),
-                                            min: "1950-01-01"
-                                          },
-                                          on: { change: _vm.save },
-                                          model: {
-                                            value: _vm.user.date_of_birth,
-                                            callback: function($$v) {
-                                              _vm.$set(
-                                                _vm.user,
-                                                "date_of_birth",
-                                                $$v
-                                              )
-                                            },
-                                            expression: "user.date_of_birth"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        "error-messages": _vm.checkNumeric(
-                                          _vm.__("message.cnic"),
-                                          _vm.$v.user.identity_card_number
-                                        ),
-                                        label: _vm.__("message.cnic")
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          return _vm.$v.user.identity_card_number.$touch()
-                                        },
-                                        blur: function($event) {
-                                          return _vm.$v.user.identity_card_number.$touch()
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.user.identity_card_number,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.user,
-                                            "identity_card_number",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "user.identity_card_number"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-row",
-                              [
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        "error-messages": _vm.nameError(
-                                          _vm.__("message.username"),
-                                          _vm.$v.user.username
-                                        ),
-                                        counter: 10,
-                                        label: _vm.__("message.username"),
-                                        required: ""
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          return _vm.$v.user.username.$touch()
-                                        },
-                                        blur: function($event) {
-                                          return _vm.$v.user.username.$touch()
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.user.username,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.user, "username", $$v)
-                                        },
-                                        expression: "user.username"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        "error-messages": _vm.nameError(
-                                          _vm.__("message.contact-number"),
-                                          _vm.$v.user.contact_number
-                                        ),
-                                        counter: 20,
-                                        label: _vm.__("message.contact-number"),
-                                        required: ""
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          return _vm.$v.user.contact_number.$touch()
-                                        },
-                                        blur: function($event) {
-                                          return _vm.$v.user.contact_number.$touch()
-                                        }
-                                      },
-                                      model: {
-                                        value: _vm.user.contact_number,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.user,
-                                            "contact_number",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "user.contact_number"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "4",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-textarea", {
-                                      attrs: {
-                                        label: _vm.__("message.address"),
-                                        "auto-grow": "",
-                                        counter: "",
-                                        rows: "1",
-                                        "row-height": "15"
-                                      },
-                                      model: {
-                                        value: _vm.user.address,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.user, "address", $$v)
-                                        },
-                                        expression: "user.address"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-row",
-                              [
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "8",
-                                      md: "6",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-file-input", {
-                                      attrs: {
-                                        accept: "image/*",
-                                        label: _vm.__(
-                                          "message.choose_profile_pic"
-                                        ),
-                                        "prepend-icon": "mdi-camera",
-                                        counter: "",
-                                        "show-size": ""
-                                      },
-                                      on: { change: _vm.makeImage },
-                                      model: {
-                                        value: _vm.user.image,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.user, "image", $$v)
-                                        },
-                                        expression: "user.image"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  {
-                                    attrs: {
-                                      cols: "12",
-                                      lg: "4",
-                                      md: "6",
-                                      sm: "12"
-                                    }
-                                  },
-                                  [
-                                    _c("v-avatar", { attrs: { size: "100" } }, [
-                                      _c("img", {
-                                        attrs: {
-                                          src: this.user_img_placeholder,
-                                          alt: _vm.user.name
-                                        }
-                                      })
-                                    ])
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-btn",
+                          "div",
+                          {
+                            directives: [
                               {
-                                staticClass: "mr-4",
-                                on: { click: _vm.submit }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                submit\n                            "
-                                )
-                              ]
-                            ),
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.user.role,
+                                expression: "user.role"
+                              }
+                            ],
+                            staticClass: "card-info"
+                          },
+                          [
+                            _c("label", [
+                              _c("i", { staticClass: "fas fa-user-cog" }),
+                              _vm._v(" Role")
+                            ]),
                             _vm._v(" "),
-                            _c("v-btn", { on: { click: _vm.clear } }, [
-                              _vm._v(
-                                "\n                                clear\n                            "
-                              )
-                            ])
+                            _c("p", [
+                              _vm._v(_vm._s(_vm._f("captilize")(_vm.user.role)))
+                            ]),
+                            _vm._v(" "),
+                            _c("v-divider")
                           ],
                           1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.user.date_of_birth,
+                                expression: "user.date_of_birth"
+                              }
+                            ],
+                            staticClass: "card-info"
+                          },
+                          [
+                            _c("label", [
+                              _c("i", { staticClass: "fas fa-calendar-day" }),
+                              _vm._v(" Date of Birth")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm._f("filter_date")(_vm.user.date_of_birth)
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("v-divider")
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.user.martial_status,
+                                expression: "user.martial_status"
+                              }
+                            ],
+                            staticClass: "card-info"
+                          },
+                          [
+                            _c("label", [
+                              _c("i", { staticClass: "fas fa-user-friends" }),
+                              _vm._v(" Martial Status")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                _vm._s(
+                                  _vm._f("captilize")(_vm.user.martial_status)
+                                )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("v-divider")
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.user.gender,
+                                expression: "user.gender"
+                              }
+                            ],
+                            staticClass: "card-info"
+                          },
+                          [
+                            _c("label", [
+                              _c("i", { staticClass: "fas fa-venus-mars" }),
+                              _vm._v(" Gender")
+                            ]),
+                            _vm._v(" "),
+                            _c("p", [
+                              _vm._v(
+                                _vm._s(_vm._f("captilize")(_vm.user.gender))
+                              )
+                            ])
+                          ]
                         )
                       ])
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-col",
+                { attrs: { cols: "6", lg: "6", md: "6", sm: "12" } },
+                [
+                  _c(
+                    "v-card",
+                    { attrs: { elevation: "10", "max-height": "365px" } },
+                    [
+                      _c(
+                        "v-timeline",
+                        {
+                          staticClass: "scrollbar timeline-overflow",
+                          attrs: { dense: "" }
+                        },
+                        _vm._l(_vm.logs, function(log) {
+                          return _c(
+                            "v-timeline-item",
+                            { key: log.id },
+                            [
+                              _c("v-card", { staticClass: "elevation-2" }, [
+                                _c("div", { staticClass: "card-wrapper" }, [
+                                  _c(
+                                    "h4",
+                                    { staticClass: "timeline-heading" },
+                                    [_vm._v(_vm._s(log.module))]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "timeline-date",
+                                      class: _vm.$vuetify.theme.dark
+                                        ? "timeline-date-dark"
+                                        : "timeline-date-light"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                           " +
+                                          _vm._s(
+                                            _vm._f("filter_date_time")(
+                                              log.created_at
+                                            )
+                                          ) +
+                                          "\n                                       "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("p", { staticClass: "timeline-log" }, [
+                                    _vm._v(_vm._s(log.log))
+                                  ])
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        }),
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-row",
+            [
+              _c(
+                "v-col",
+                { attrs: { cols: "12" } },
+                [
+                  _c(
+                    "v-card",
+                    { attrs: { elevation: "10" } },
+                    [
+                      _c(
+                        "v-expansion-panels",
+                        { attrs: { inset: "" } },
+                        [
+                          _c(
+                            "v-expansion-panel",
+                            [
+                              _c("v-expansion-panel-header", [
+                                _vm._v(_vm._s(_vm.__("message.rights")))
+                              ]),
+                              _vm._v(" "),
+                              _c("v-expansion-panel-content", [
+                                _c(
+                                  "div",
+                                  { staticClass: "card-wrapper" },
+                                  [
+                                    _c("v-treeview", {
+                                      attrs: {
+                                        selectable: "",
+                                        "selected-color": "primary",
+                                        "open-on-click": "",
+                                        "item-disabled": "locked",
+                                        items: _vm.items,
+                                        value: _vm.values,
+                                        "on-icon": "done",
+                                        "off-icon": "close"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -1513,18 +1049,49 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/UserForm.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/components/Admin/UserForm.vue ***!
-  \****************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/ui/Loader.vue?vue&type=template&id=5f6506b3&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/ui/Loader.vue?vue&type=template&id=5f6506b3&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-overlay",
+    { attrs: { value: _vm.show_loader } },
+    [_c("v-progress-circular", { attrs: { indeterminate: "", size: "64" } })],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Users/User.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/Admin/Users/User.vue ***!
+  \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UserForm_vue_vue_type_template_id_4c0f348c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserForm.vue?vue&type=template&id=4c0f348c& */ "./resources/js/components/Admin/UserForm.vue?vue&type=template&id=4c0f348c&");
-/* harmony import */ var _UserForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserForm.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/UserForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _User_vue_vue_type_template_id_18aef846___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./User.vue?vue&type=template&id=18aef846& */ "./resources/js/components/Admin/Users/User.vue?vue&type=template&id=18aef846&");
+/* harmony import */ var _User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./User.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/Users/User.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _User_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./User.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/Admin/Users/User.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -1532,10 +1099,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _UserForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _UserForm_vue_vue_type_template_id_4c0f348c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _UserForm_vue_vue_type_template_id_4c0f348c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _User_vue_vue_type_template_id_18aef846___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _User_vue_vue_type_template_id_18aef846___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1545,38 +1112,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Admin/UserForm.vue"
+component.options.__file = "resources/js/components/Admin/Users/User.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/UserForm.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************!*\
-  !*** ./resources/js/components/Admin/UserForm.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************/
+/***/ "./resources/js/components/Admin/Users/User.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Admin/Users/User.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./UserForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/UserForm.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./User.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Users/User.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin/UserForm.vue?vue&type=template&id=4c0f348c&":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/Admin/UserForm.vue?vue&type=template&id=4c0f348c& ***!
-  \***********************************************************************************/
+/***/ "./resources/js/components/Admin/Users/User.vue?vue&type=style&index=0&lang=css&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Users/User.vue?vue&type=style&index=0&lang=css& ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../node_modules/vue-loader/lib??vue-loader-options!./User.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Users/User.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Users/User.vue?vue&type=template&id=18aef846&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Users/User.vue?vue&type=template&id=18aef846& ***!
+  \*************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserForm_vue_vue_type_template_id_4c0f348c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./UserForm.vue?vue&type=template&id=4c0f348c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/UserForm.vue?vue&type=template&id=4c0f348c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserForm_vue_vue_type_template_id_4c0f348c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_template_id_18aef846___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./User.vue?vue&type=template&id=18aef846& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Users/User.vue?vue&type=template&id=18aef846&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_template_id_18aef846___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserForm_vue_vue_type_template_id_4c0f348c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_template_id_18aef846___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -1646,6 +1229,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BackButton_vue_vue_type_template_id_11fd7e99_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BackButton_vue_vue_type_template_id_11fd7e99_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/ui/Loader.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/Admin/ui/Loader.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Loader_vue_vue_type_template_id_5f6506b3_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Loader.vue?vue&type=template&id=5f6506b3&scoped=true& */ "./resources/js/components/Admin/ui/Loader.vue?vue&type=template&id=5f6506b3&scoped=true&");
+/* harmony import */ var _Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loader.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/ui/Loader.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Loader_vue_vue_type_template_id_5f6506b3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Loader_vue_vue_type_template_id_5f6506b3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "5f6506b3",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Admin/ui/Loader.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/ui/Loader.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/Admin/ui/Loader.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Loader.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/ui/Loader.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/ui/Loader.vue?vue&type=template&id=5f6506b3&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/Admin/ui/Loader.vue?vue&type=template&id=5f6506b3&scoped=true& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_template_id_5f6506b3_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Loader.vue?vue&type=template&id=5f6506b3&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/ui/Loader.vue?vue&type=template&id=5f6506b3&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_template_id_5f6506b3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_template_id_5f6506b3_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

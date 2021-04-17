@@ -1,5 +1,6 @@
 <template>
     <div>
+        <loader :show_loader="show_loader"></loader>
         <v-snackbar
             v-model="snackbar"
             top
@@ -26,7 +27,6 @@
                     cols="12"
                 >
                     <v-card
-                        :loading="show_loader"
                         elevation="10"
                     >
                         <v-card-title>
@@ -501,6 +501,7 @@
     import back_btn from '../ui/BackButton.vue'
     import {validationMixin} from 'vuelidate'
     import {required, sameAs, maxLength, email, numeric, isUnique} from 'vuelidate/lib/validators'
+    import loader from '../ui/Loader.vue'
 
     export default {
         name: "ShopSetup",
@@ -537,7 +538,6 @@
                 action: 'add'
 
             },
-            show_loader: false,
             logo_placeholder: '',
             favicon_placeholder: '',
             has_data: false
@@ -594,7 +594,7 @@
                 })
             },
             saveSetting() {
-                // this.show_loader = true;
+                this.show_loader = true;
                 axios({
                     method: 'POST',
                     url: '/save-setting',
@@ -616,7 +616,8 @@
             await this.loadSetting();
         },
         components: {
-            'back-btn': back_btn
+            'back-btn': back_btn,
+            'loader': loader
         }
     }
 </script>

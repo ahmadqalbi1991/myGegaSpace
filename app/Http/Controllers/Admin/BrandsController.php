@@ -22,7 +22,7 @@ class BrandsController extends Controller
 
     public function index(Request $request) {
         $page = 1;
-        $perPageItems = 1;
+        $perPageItems = 10;
         $search = '';
         $input = $request->all();
         if (isset($input['page']) && $input['page']) {

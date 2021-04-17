@@ -37,21 +37,42 @@ class EmailTemplatesController extends Controller
      *
      */
     public function index(Request $request) {
-        $templates = EmailTemplates::getTemplates();
-        $i = 0;
+        $page = 1;
+        $perPageItems = 10;
+        $search = '';
+        $input = $request->all();
+        if (isset($input['page']) && $input['page']) {
+            $page = $input['page'];
+        }
+
+        if (isset($input['perPageItem']) && $input['perPageItem']) {
+            $perPageItems = $input['perPageItem'];
+        }
+
+        if (isset($input['q']) && $input['q']) {
+            $search = $input['q'];
+        }
+
+        $offset = ($page - 1) * $perPageItems;
+        $templates = EmailTemplates::getTemplates($offset, $perPageItems, $search);
+        $i = ($page -1) * $perPageItems + 1;
         $data = [];
 
         foreach ($templates as $key => $template) {
             $data[$key] = [];
-            $data[$key]['sr'] = ++$i;
+            $data[$key]['sr'] = $i;
             $data[$key]['subject'] = $template->subject;
             $data[$key]['type'] = ucwords(str_replace('_', ' ', $template->type));
             $data[$key]['status'] = $template->status == 'Active' ? __('message.active') : __('message.disable');
             $data[$key]['color'] = $template->status == 'Active' ? 'success' : 'error';
             $data[$key]['hash_id'] = $this->hashids->encode($template->id);
+            $i++;
         }
 
-        return $data;
+        $output['data'] = $data;
+        $output['totalTemplates'] = EmailTemplates::countTotal($search);
+
+        return $output;
     }
 
     /**

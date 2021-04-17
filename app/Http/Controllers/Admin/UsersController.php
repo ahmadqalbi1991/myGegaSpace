@@ -20,11 +20,9 @@ class UsersController extends Controller
      *
      */
     protected $hashids;
+
     /**
-     *
-     * constructor
-     *
-     *
+     * UsersController constructor.
      */
     public function __construct()
     {
@@ -32,17 +30,35 @@ class UsersController extends Controller
     }
 
     /**
-     *
-     * index
-     *
-     * @param
-     *
-     * @return result
-     *
+     * @param Request $request
+     * @return array
      */
     public function index(Request $request)
     {
+        $page = 1;
+        $perPageItems = 10;
+        $search = '';
+        $input = $request->all();
+        if (isset($input['page']) && $input['page']) {
+            $page = $input['page'];
+        }
+
+        if (isset($input['perPageItem']) && $input['perPageItem']) {
+            $perPageItems = $input['perPageItem'];
+        }
+
+        if (isset($input['q']) && $input['q']) {
+            $search = $input['q'];
+        }
+        $offset = ($page - 1) * $perPageItems;
         $users = User::where('is_admin', 1)
+            ->when($perPageItems != -1, function ($q) use ($perPageItems, $offset) {
+                return $q->limit($perPageItems)
+                    ->offset($offset);
+            })
+            ->when($search, function ($q) use ($search) {
+                return $q->where('first_name', 'like', '%' . $search . '%');
+            })
 //            ->where('role', '<>', 'Super Admin')
 //            ->when(Auth::user()->id, function ($q) {
 //                return $q->where('id', '<>', Auth::user()->id);
@@ -50,7 +66,7 @@ class UsersController extends Controller
             ->get();
 
         $data = [];
-        $sr = 0;
+        $sr = ($page -1) * $perPageItems + 1;
 
         foreach ($users as $key => $user) {
             $image_path = checkUserImage($user['image'], $user['gender']);
@@ -63,17 +79,15 @@ class UsersController extends Controller
             $data[$key]['status'] = $user['status'] == 'Active' ? __('message.active') : __('message.disable');
         }
 
-        return $data;
+        $output = [];
+        $output['users'] = $data;
+        $output['totalUsers'] = User::where('is_admin', 1)->count();
+        return $output;
     }
 
     /**
-     *
-     * get user data
-     *
-     * @param $request
-     *
-     * @return result
-     *
+     * @param Request $request
+     * @return array
      */
     public function getUser(Request $request)
     {
@@ -99,13 +113,8 @@ class UsersController extends Controller
     }
 
     /**
-     *
-     * save and update user
-     *
-     * @param $request
-     *
+     * @param Request $request
      * @return array
-     *
      */
     public function saveUser(Request $request)
     {
@@ -219,5 +228,25 @@ class UsersController extends Controller
         }
 
         return ['status' => $status, 'message' => $message, 'icon' => $icon];
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+
+    public function deleteUser(Request $request) {
+        $id = $request->get('id');
+        return User::where('id', $id)->delete();
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+
+    public function changeStatus(Request $request) {
+        $input = $request->all();
+        return User::where('id', $input['id'])->update($input);
     }
 }

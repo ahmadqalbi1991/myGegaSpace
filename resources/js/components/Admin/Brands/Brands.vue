@@ -50,8 +50,19 @@
                     :server-items-length="totalBrands"
                     :search="search"
                     :custom-filter="getBrands"
-                    class="elevation-1"
+                    elevation="10"
                 >
+                    <template v-slot:top>
+                        <v-text-field
+                            v-model="search"
+                            :label="__('message.search_brand')"
+                            class="mx-4"
+                            @input="getBrands"
+                            @click="getBrands"
+                            @blur="getBrands"
+                            append-icon="search"
+                        ></v-text-field>
+                    </template>
                     <template v-slot:item.image="{item}">
                         <div class="m-5">
                             <v-avatar
@@ -64,17 +75,6 @@
                                 >
                             </v-avatar>
                         </div>
-                    </template>
-                    <template v-slot:top>
-                        <v-text-field
-                            v-model="search"
-                            :label="__('message.search_brand')"
-                            class="mx-4"
-                            @input="getBrands"
-                            @click="getBrands"
-                            @blur="getBrands"
-                            append-icon="search"
-                        ></v-text-field>
                     </template>
                     <template v-slot:item.id="{item}">
                         <v-btn
@@ -108,6 +108,7 @@
                         <v-dialog
                             v-model="dialog"
                             max-width="500"
+                            :retain-focus="false"
                         >
                             <v-card>
                                 <v-card-title class="headline">
@@ -115,7 +116,7 @@
                                 </v-card-title>
 
                                 <v-card-text>
-                                    {{ __('message.delete_confirm', [type]) }}
+                                    {{ __('message.delete_confirm', [__('message.brand')]) }}
                                 </v-card-text>
 
                                 <v-card-actions>
@@ -130,7 +131,7 @@
 
                                     <v-btn
                                         color="error"
-                                        @click="deleteBrand(item.id)"
+                                        @click="deleteBrand"
                                     >
                                         {{ __('message.confirm') }}
                                     </v-btn>
@@ -283,8 +284,6 @@
                     itemsPerPage: 10
                 },
                 totalBrands: 0,
-                show_dialog: false,
-                show_loader: false,
                 brand_img_placeholder: '',
                 deleteId: ''
             }
@@ -305,9 +304,8 @@
                 });
             },
             updatePage(pagination) {
-                const { itemsPerPage: results, page } = pagination
                 this.pagination = pagination;
-                this.getBrands({ page, results });
+                this.getBrands();
             },
             checkImg() {
                 if (this.brand.image) {
@@ -364,7 +362,8 @@
                     this.show_dialog = true;
                 });
             },
-            deleteBrand(id) {
+            deleteBrand() {
+                const id = this.deleteId;
                 this.show_loader = true;
                 axios.get('/delete-brand', {params: {id: id}}).then((response) => {
                     this.show_loader = false;

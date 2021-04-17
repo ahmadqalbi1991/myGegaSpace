@@ -1,5 +1,6 @@
 <template>
     <div>
+        <loader :show_loader="show_loader"></loader>
         <v-container>
             <v-row no-gutters>
                 <v-col
@@ -7,7 +8,6 @@
                 >
                     <v-card
                         elevation="10"
-                        :loading="show_loader"
                     >
                         <v-card-title>
                             <h3>{{ __("message.user's") }} {{ __('message.profile') }}</h3>
@@ -88,7 +88,6 @@
                     sm="12"
                 >
                     <v-card
-                        :loading="show_loader"
                         elevation="10"
                         max-height="365px"
                     >
@@ -122,7 +121,6 @@
                     sm="12"
                 >
                     <v-card
-                        :loading="show_loader"
                         elevation="10"
                         max-height="365px"
                     >
@@ -155,7 +153,6 @@
                     cols="12"
                 >
                     <v-card
-                        :loading="show_loader"
                         elevation="10"
                     >
                         <v-expansion-panels inset>
@@ -185,8 +182,8 @@
 </template>
 
 <script>
-    import shop_loader from '../layout/Loader.vue'
     import back_btn from '../ui/BackButton.vue'
+    import loader from '../ui/Loader.vue'
 
     export default {
         data() {
@@ -214,7 +211,6 @@
                     hash_id: ''
                 },
                 logs: [],
-                show_loader: true,
                 user_img_placeholder: '',
                 all_rights: [],
                 values: [],
@@ -260,8 +256,8 @@
             }
         },
         components: {
-            'shop-loader': shop_loader,
             'back-btn': back_btn,
+            'loader': loader
         },
         created() {
             this.all_rights = window._rights

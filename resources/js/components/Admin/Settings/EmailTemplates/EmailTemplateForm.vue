@@ -1,5 +1,6 @@
 <template>
     <div>
+        <loader :show_loader="show_loader"></loader>
         <v-snackbar
             v-model="snackbar"
             top
@@ -130,6 +131,7 @@
     import back_btn from '../../ui/BackButton.vue'
     import {validationMixin} from 'vuelidate'
     import {required} from 'vuelidate/lib/validators'
+    import loader from '../../ui/Loader.vue'
 
     export default {
         mixins: [validationMixin],
@@ -150,7 +152,6 @@
                 action: 'add',
             },
             types: [],
-            show_loader: false
         }),
         methods: {
             requiredError(label, key) {
@@ -204,6 +205,7 @@
             },
             getTemplate() {
                 if (this.$route.params.id) {
+                    this.show_loader = true;
                     axios.get('/email-template-data', {params: {id: this.$route.params.id}}).then((response) => {
                         this.template = response.data;
                         this.template.action = 'edit';
@@ -217,7 +219,8 @@
             this.typesList();
         },
         components: {
-            'back-btn': back_btn
+            'back-btn': back_btn,
+            'loader': loader
         },
     }
 </script>

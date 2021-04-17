@@ -127,6 +127,8 @@ Vue.mixin({
             setting: [],
             default_title: "Shop Name",
             show_alert: false,
+            show_loader: false,
+            show_dialog: false,
             alert_text: null,
             alert_type: null,
             dialog: false,
@@ -143,11 +145,14 @@ Vue.mixin({
     },
     methods: {
         getCountries() {
+            this.show_loader = true;
             axios.get('/get-countries').then((data) => {
                 this.countries = data.data;
+                this.show_loader = false;
             });
         },
         getStates(country) {
+            this.show_loader = true;
             this.states = null;
             axios.get('/get-states', {
                 params:{
@@ -155,9 +160,11 @@ Vue.mixin({
                 }
               }).then((data) => {
                 this.states = data.data;
+                this.show_loader = false;
             });
         },
         getCities(state) {
+            this.show_loader = true;
             this.cities = null;
             axios.get('/get-cities', {
                 params:{
@@ -165,6 +172,7 @@ Vue.mixin({
                 }
               }).then((data) => {
                 this.cities = data.data;
+                this.show_loader = false;
             });
         },
         setTheme() {

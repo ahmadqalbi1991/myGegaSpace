@@ -105,7 +105,7 @@ return [
     'actions' => 'Actions',
     'setting' => 'Setting',
     'settings' => 'Settings',
-    'email_templates' => 'EmailTemplates',
+    'email_templates' => 'Email Templates',
     'email_template' => 'Email Template',
     'subject' => 'Subject',
     'type' => 'Type',
@@ -131,5 +131,7 @@ return [
     'brand_added_log' => ':brand added successfully',
     'brand_update_log' => ':brand updated successfully',
     'total_products' => 'Total Products',
-    'search_brand' => 'Search Brand'
+    'search_brand' => 'Search Brand',
+    'status_success' => ':key is :type',
+    'search_email_template' => 'Search Email Template by Type'
 ];

@@ -18,8 +18,8 @@ class Brand extends Model
     public function getAll($page, $perPageItem, $q) {
         $offset = ($page - 1) * $perPageItem;
         return static::offset($offset)
-            ->where('brand_name', 'like', '%' . $q . '%')
             ->limit($perPageItem)
+            ->where('brand_name', 'like', '%' . $q . '%')
             ->get();
     }
 

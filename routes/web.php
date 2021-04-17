@@ -21,6 +21,7 @@ Route::post("/login", "Auth\LoginController@login")->middleware('guest');
 // Protected Routes - allows only logged in admin
 Route::group(['middleware' => ['auth', 'admin', 'rights:dashboard']], function () {
     Route::get('/dashboard', 'Admin\DashboardController@index')->name("dashboard");
+    Route::get('/email-templates', 'Admin\DashboardController@index')->name("dashboard");
     Route::get('/brands-list', 'Admin\BrandsController@index');
     Route::post('/save-brand', 'Admin\BrandsController@saveBrand');
     Route::get('/brand-data', 'Admin\BrandsController@getBrand');
@@ -31,8 +32,8 @@ Route::group(['middleware' => ['auth', 'admin', 'rights:dashboard']], function (
     Route::get('/user-data', 'Admin\UsersController@getUser');
     Route::post('/save-user', 'Admin\UsersController@saveUser');
     Route::post('/update-setting', 'Admin\SettingController@update');
-    Route::post('/change-status', 'Admin\AdminController@changeStatus');
-    Route::delete('/delete-record', 'Admin\AdminController@deleteRecord');
+    Route::get('/delete-user', 'Admin\UsersController@deleteUser');
+    Route::post('/change-user-status', 'Admin\UsersController@changeStatus');
     Route::get('/emails-templates-data', 'Admin\EmailTemplatesController@index');
     Route::post('/save-email-template', 'Admin\EmailTemplatesController@saveTemplate');
     Route::get('/email-template-data', 'Admin\EmailTemplatesController@getTemplate');

@@ -30318,6 +30318,10 @@ hr {
 
 /*========== Admin css start ========== */
 
+.m-5 {
+  margin: 5px;
+}
+
 .required_label {
   color: red;
 }
@@ -30343,6 +30347,10 @@ hr {
 .card-info {
   margin: 10px 0;
   line-height: 1.7;
+}
+
+.buttons {
+  text-align: right;
 }
 
 /*========== Admin css ends ========== */

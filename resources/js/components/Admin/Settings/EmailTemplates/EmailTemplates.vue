@@ -1,5 +1,6 @@
 <template>
     <div>
+        <loader :show_loader="show_loader"></loader>
         <v-snackbar
             v-model="snackbar"
             top
@@ -23,31 +24,56 @@
         <v-container>
             <v-card
                 elevation="10"
-                :loading="show_loader"
             >
                 <v-card-title>
                     {{ __('message.email_templates') }}
                     <add-btn :right="haveRight('email_templates.add_email_template')" :type="__('message.email_template')" :to="{name: 'addEmailTemplate'}"></add-btn>
                 </v-card-title>
-                <datatable
+                <v-data-table
                     :headers="headers"
                     :items="items"
-                    :view="null"
-                    :edit="haveRight('email_templates.edit_email_template')"
-                    :to="null"
-                    edit_path="editEmailTemplate"
-                    :type="__('message.email_template')"
-                    @resetData="resetData"
-                    :show_loader="show_loader"
-                ></datatable>
+                    :options.sync="options"
+                    @pagination="updatePage"
+                    :server-items-length="totalTemplates"
+                    :search="search"
+                    :custom-filter="getEmailTemplates"
+                >
+                    <template v-slot:top>
+                        <v-text-field
+                            v-model="search"
+                            :label="__('message.search_email_template')"
+                            class="mx-4"
+                            @input="getEmailTemplates"
+                            @click="getEmailTemplates"
+                            @blur="getEmailTemplates"
+                            append-icon="search"
+                        ></v-text-field>
+                    </template>
+                    <template v-slot:item.hash_id="{ item }">
+                        <v-btn
+                            v-if="haveRight('email_templates.edit_email_template')"
+                            color="primary"
+                            class="ma-2 white--text"
+                            small
+                            :to="{name: 'editEmailTemplate', params: {id: item.hash_id}}"
+                        >
+                            {{ __('message.edit') }}
+                            <v-icon
+                                right
+                            >
+                                create
+                            </v-icon>
+                        </v-btn>
+                    </template>
+                </v-data-table>
             </v-card>
         </v-container>
     </div>
 </template>
 
 <script>
-    import datatable from '../../layout/Datatable.vue'
     import add_btn from '../../ui/AddButton.vue'
+    import loader from '../../ui/Loader.vue'
 
     export default {
         name: "EmailTemplates.vue",
@@ -79,16 +105,26 @@
                     },
                 ],
                 items: [],
-                show_loader: true,
+                search: '',
+                options: {
+                    page: 1,
+                    itemsPerPage: 10
+                },
+                totalTemplates: 0,
             }
         },
         methods: {
             getEmailTemplates() {
                 this.show_loader = true;
-                axios.get('/emails-templates-data').then((response) => {
-                    this.items = response.data;
+                axios.get('/emails-templates-data', {params: {page: this.options.page, perPageItem: this.options.itemsPerPage, q: this.search}}).then((response) => {
+                    this.items = response.data.data;
+                    this.totalTemplates = response.data.totalTemplates;
                     this.show_loader = false;
                 });
+            },
+            updatePage(pagination) {
+                this.pagination = pagination;
+                this.getEmailTemplates();
             },
             resetData() {
                 setTimeout(() => [
@@ -97,8 +133,8 @@
             }
         },
         components: {
-            'datatable': datatable,
             'add-btn': add_btn,
+            'loader': loader
         },
         async mounted() {
             await this.getEmailTemplates();
