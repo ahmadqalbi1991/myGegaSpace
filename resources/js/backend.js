@@ -36,6 +36,9 @@ module.exports = {
          * Check Rights
          */
         haveRight(right) {
+            if (window._user_data.role == 'Super Admin') {
+                return true;
+            }
             var rights_arr = right.split('.');
             var arr_len = rights_arr.length;
             if (arr_len > 0) {

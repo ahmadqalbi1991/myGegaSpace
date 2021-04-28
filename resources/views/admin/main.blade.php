@@ -24,12 +24,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <content-wrapper></content-wrapper>
 </div>
 <script>
-    window._locale = '{{ app()->getLocale() }}'
-    window._rights = {!! $rights !!}
-    window.shop_settings = {!! $shop_settings !!}
-    window.settings = {!! $settings !!}
-    window.all_rights = {!! $all_rights !!}
-    window._translations = {!! cache('translations') !!}
+    window._locale = '{{ app()->getLocale() }}';
+    window._rights = {!! $rights !!};
+    window.shop_settings = {!! $shop_settings !!};
+    window.settings = {!! $settings !!};
+    window.all_rights = {!! $all_rights !!};
+    window._translations = {!! cache('translations') !!};
+    window._user_data = {!! Auth::user() !!};
 </script>
 <script src="{{ mix('/js/app.js') }}"></script>
 </body>

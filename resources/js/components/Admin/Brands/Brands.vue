@@ -23,20 +23,21 @@
         </v-snackbar>
         <v-container>
             <v-card
+                v-if="site_setting.brands_allow"
                 elevation="10"
             >
                 <v-card-title>
                     {{ __('message.brands') }}
                     <v-btn
-                        color="primary"
+                        outlined
                         absolute
                         right
-                        dark
                         @click="show_dialog = true"
                     >
                         {{ __('message.add') + ' ' + __('message.brand') }}
                         <v-icon
                             right
+                            color="primary"
                         >
                             mdi-plus
                         </v-icon>&nbsp;
@@ -80,27 +81,29 @@
                         <v-btn
                             v-if="haveRight('brands.edit_brand')"
                             @click="editBrand(item.id)"
-                            color="primary"
-                            class="ma-2 white--text"
+                            outlined
+                            class="ma-2"
                             small
                         >
                             {{ __('message.edit') }}
                             <v-icon
                                 right
+                                color="primary"
                             >
                                 create
                             </v-icon>
                         </v-btn>
                         <v-btn
                             v-if="haveRight('brands.delete_brand')"
-                            color="error"
-                            class="ma-2 white--text"
+                            outlined
+                            class="ma-2"
                             small
                             @click.stop="showDialog(item.id)"
                         >
                             {{ __('message.delete') }}
                             <v-icon
                                 right
+                                color="error"
                             >
                                 mdi-delete
                             </v-icon>
@@ -141,6 +144,47 @@
                     </template>
                 </v-data-table>
             </v-card>
+            <v-card
+                v-else
+                elevation="10"
+            >
+                <v-col
+                    cols="12"
+                >
+                    <v-banner>
+                        <div class="card-wrapper">
+                            <div class="card-text">
+                                <h3>
+                                    <v-icon
+                                        color="warning"
+                                    >
+                                        warning
+                                    </v-icon>
+                                    {{ __('message.brands_setting_off') }}
+                                </h3>
+                                <p>
+                                    {{ __('message.brand_allow_permission') }}
+                                </p>
+                            </div>
+                        </div>
+                        <template v-slot:actions>
+                            <v-btn
+                                text
+                                outlined
+                                @click="enableBrands"
+                            >
+                                {{ __('message.enable_brands') }}
+                                <v-icon
+                                    right
+                                    color="success"
+                                >
+                                    power_settings_new
+                                </v-icon>
+                            </v-btn>
+                        </template>
+                    </v-banner>
+                </v-col>
+            </v-card>
         </v-container>
         <v-dialog
             v-model="show_dialog"
@@ -152,12 +196,11 @@
                 <v-toolbar>
                     <v-btn
                         icon
-                        dark
                         @click="show_dialog = false"
                     >
                         <v-icon>mdi-close</v-icon>
                     </v-btn>
-                    <v-toolbar-title>{{ brand.action | captilize }} {{ __('message.brand') }}</v-toolbar-title>
+                    <v-toolbar-title>{{ brand.action | capitalize }} {{ __('message.brand') }}</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
                         <v-btn
@@ -289,6 +332,20 @@
             }
         },
         methods: {
+            enableBrands() {
+                this.show_loader = true;
+                axios.post('/enable-brands', {status: !this.site_setting.brands_allow}).then((response) => {
+                    this.show_loader = false;
+                    if (response.data.status === 'success') {
+                        window.location.reload();
+                    } else {
+                        this.snackbar = true;
+                        this.snackbar_text = response.data.message;
+                        this.snackbar_icon = response.data.icon;
+                        this.snackbar_color = response.data.status;
+                    }
+                })
+            },
             showDialog(id) {
                 if (id) {
                     this.deleteId = id;
@@ -333,8 +390,8 @@
                     url: '/save-brand',
                     data: this.brand
                 }).then((response) => {
+                    this.resetForm(this.brand);
                     if (this.brand.action == 'add') {
-                        this.resetForm(this.brand);
                         this.brand.action = 'add';
                         this.$v.brand.$reset();
                     }

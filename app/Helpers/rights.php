@@ -42,6 +42,9 @@ function makeRightsArray($arr) {
  */
 function haveRight($right)
 {
+    if (Auth::user()->role == 'Super Admin') {
+        return TRUE;
+    }
     $right_array = explode(".", $right);
     $rights = collect(json_decode(Auth::user()->rights));
     $right_length = count($right_array);
@@ -82,7 +85,7 @@ function treeView($rights, $readonly = FALSE)
             $treeview[$i] = [];
             $treeview[$i]['id'] = $key;
             $treeview[$i]['name'] = ucwords(str_replace("_", " ", $key));
-            if ($readonly) {
+            if ($readonly == 'true') {
                 $treeview[$i]['locked'] = TRUE;
             }
             if (count($children) > 0) {
@@ -92,7 +95,7 @@ function treeView($rights, $readonly = FALSE)
                     $treeview[$i]['children'][$j] = [];
                     $treeview[$i]['children'][$j]['id'] = $key2;
                     $treeview[$i]['children'][$j]['name'] = ucwords(str_replace("_", " ", $key2));
-                    if ($readonly) {
+                    if ($readonly == 'true') {
                         $treeview[$i]['children'][$j]['locked'] = TRUE;
                     }
                     if ($sub_right) {
@@ -109,7 +112,7 @@ function treeView($rights, $readonly = FALSE)
             $treeview[$i] = [];
             $treeview[$i]['id'] = $key;
             $treeview[$i]['name'] = ucwords(str_replace("_", " ", $key));
-            if ($readonly) {
+            if ($readonly == 'true') {
                 $treeview[$i]['locked'] = TRUE;
             }
         }
@@ -160,6 +163,12 @@ function rights()
             'add_brand' => 1,
             'edit_brand' => 1,
             'delete_brand' => 1
+        ],
+        'categories' => [
+            'categories_list' => 1,
+            'add_category' => 1,
+            'edit_category' => 1,
+            'delete_category' => 1
         ],
         'users' => [
             'user_list' => 1,

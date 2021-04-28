@@ -30,6 +30,7 @@ hr {
 .m-5 {
     margin: 5px;
 }
+
 .required_label {
     color: red;
 }
@@ -54,6 +55,12 @@ hr {
 .card-wrapper {
     padding: 20px;
 }
+
+.card-text {
+    margin: 50px 10px;
+    line-height: 2rem;
+}
+
 .card-info {
     margin: 10px 0;
     line-height: 1.7;

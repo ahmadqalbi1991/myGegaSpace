@@ -67,8 +67,8 @@
                         <v-btn
                             v-if="haveRight('users.change_status_for_user')"
                             :color="item.color"
-                            class="ma-2 white--text"
-                            small
+                            class="ma-2"
+                            x-small
                             @click="changeUserStatus(item.id, item.status)"
                         >
                             {{ item.status }}
@@ -76,7 +76,8 @@
                         <v-chip
                             v-else
                             :color="item.color"
-                            small
+                            outlined
+                            x-small
                         >
                             {{ item.status }}
                         </v-chip>
@@ -85,27 +86,29 @@
                         <v-btn
                             v-if="haveRight('users.edit_user')"
                             :to="{name: 'viewUser', params: {id: item.hash_id}}"
-                            color="primary"
-                            class="ma-2 white--text"
+                            class="ma-2"
+                            outlined
                             small
                         >
                             {{ __('message.view') }}
                             <v-icon
                                 right
+                                color="primary"
                             >
                                 mdi-eye
                             </v-icon>
                         </v-btn>
                         <v-btn
                             v-if="haveRight('users.delete_user')"
-                            color="error"
-                            class="ma-2 white--text"
+                            outlined
+                            class="ma-2"
                             small
                             @click.stop="showDialog(item.id)"
                         >
                             {{ __('message.delete') }}
                             <v-icon
                                 right
+                                color="error"
                             >
                                 mdi-delete
                             </v-icon>

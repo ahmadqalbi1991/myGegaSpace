@@ -133,5 +133,16 @@ return [
     'total_products' => 'Total Products',
     'search_brand' => 'Search Brand',
     'status_success' => ':key is :type',
-    'search_email_template' => 'Search Email Template by Type'
+    'search_email_template' => 'Search Email Template by Type',
+    'brands_allowed' => 'Brands Allowed',
+    'brands_setting_off' => 'You have disabled brands in Shop Setting.',
+    'brand_allow_permission' => 'Do you wish to allow brands in your shop?',
+    'enable_brands' => 'Enable Brands',
+    'categories' => 'Categories',
+    'category' => 'Category',
+    'category_name' => 'Category Name',
+    'description' => 'Description',
+    'parent_category' => 'Parent Category',
+    'is_active_on_site' => 'Activate on site',
+    'is_menu' => 'Is Menu item'
 ];

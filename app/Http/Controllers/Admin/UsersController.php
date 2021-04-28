@@ -59,10 +59,10 @@ class UsersController extends Controller
             ->when($search, function ($q) use ($search) {
                 return $q->where('first_name', 'like', '%' . $search . '%');
             })
-//            ->where('role', '<>', 'Super Admin')
-//            ->when(Auth::user()->id, function ($q) {
-//                return $q->where('id', '<>', Auth::user()->id);
-//            })
+            ->where('role', '<>', 'Super Admin')
+            ->when(Auth::user()->id, function ($q) {
+                return $q->where('id', '<>', Auth::user()->id);
+            })
             ->get();
 
         $data = [];
@@ -81,7 +81,11 @@ class UsersController extends Controller
 
         $output = [];
         $output['users'] = $data;
-        $output['totalUsers'] = User::where('is_admin', 1)->count();
+        $output['totalUsers'] = User::where('is_admin', 1)
+                ->where('role', '<>', 'Super Admin')
+                ->when(Auth::user()->id, function ($q) {
+                    return $q->where('id', '<>', Auth::user()->id);
+                })->count();
         return $output;
     }
 

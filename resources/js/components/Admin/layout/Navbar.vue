@@ -65,6 +65,15 @@
                         </v-list-item-title>
                     </v-list-item>
 
+                    <v-list-item v-if="haveRight('brands.categories_list')" :to="{name: 'categories'}" link>
+                        <v-list-item-icon>
+                            <v-icon>reorder</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>
+                            {{ __('message.categories') }}
+                        </v-list-item-title>
+                    </v-list-item>
+
                     <v-list-item v-if="haveRight('users.user_list')" :to="{name: 'users'}" link>
                         <v-list-item-icon>
                             <v-icon>groups</v-icon>
@@ -117,6 +126,17 @@
                     </v-list-group>
                 </v-list-item-group>
             </v-list>
+            <template v-slot:append>
+                <div class="pa-2">
+                    <v-btn
+                        block
+                        color="error"
+                        href="/logout"
+                    >
+                        {{ __('message.logout') }}
+                    </v-btn>
+                </div>
+            </template>
         </v-navigation-drawer>
     </div>
 

@@ -30344,6 +30344,11 @@ hr {
   padding: 20px;
 }
 
+.card-text {
+  margin: 50px 10px;
+  line-height: 2rem;
+}
+
 .card-info {
   margin: 10px 0;
   line-height: 1.7;

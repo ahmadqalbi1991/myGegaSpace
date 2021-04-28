@@ -3,14 +3,15 @@
         v-if="right"
         absolute
         right
-        class="ma-2 white--text"
+        class="ma-2wh"
         elevation="10"
         :to="to"
-        color="primary"
+        outlined
     >
         {{ __('message.add') + " " + type }}
         <v-icon
             right
+            color="primary"
         >
             mdi-plus
         </v-icon>&nbsp;

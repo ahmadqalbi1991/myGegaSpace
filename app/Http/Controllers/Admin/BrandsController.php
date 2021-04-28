@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\BrandInterface as BrandInterface;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\This;
 use Auth;
 use App\Models\General\Log;
+use App\Models\Brand;
 
 class BrandsController extends Controller
 {
-    public function __construct(BrandInterface $brand)
+    public function __construct()
     {
-        $this->brand = $brand;
+        $this->brand = new Brand();
     }
 
     /**
@@ -88,7 +88,7 @@ class BrandsController extends Controller
 
         if ($action == 'add') {
             unset($input['id']);
-            $status = $this->brand->save($input);
+            $status = $this->brand->firstOrCreate($input);
             if ($status) {
                 $status = "success";
                 $icon = "checked";
@@ -99,9 +99,13 @@ class BrandsController extends Controller
                     'log' => $log_message
                 ];
                 Log::create($log);
+            } else {
+                $status = "error";
+                $icon = 'warning';
+                $message = __('message.something_went_wrong');
             }
         } else {
-            $status = $this->brand->update($input);
+            $status = $this->brand->where('id', $input['id'])->update($input);
             if ($status) {
                 $status = "success";
                 $icon = "checked";
@@ -112,6 +116,10 @@ class BrandsController extends Controller
                     'log' => $log_message
                 ];
                 Log::create($log);
+            } else {
+                $status = "error";
+                $icon = 'warning';
+                $message = __('message.something_went_wrong');
             }
         }
 

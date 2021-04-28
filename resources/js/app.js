@@ -77,6 +77,9 @@ let routes = [
     {path: '/brands',
     name: 'brands',
     component: () => import(/* webpackPrefetch: true */ './components/Admin/Brands/Brands.vue') },
+    {path: '/categories',
+    name: 'categories',
+    component: () => import(/* webpackPrefetch: true */ './components/Admin/Categories/Categories.vue') },
     {path: '/shop-setup',
     name: 'shopSetup',
     component: () => import(/* webpackPrefetch: true */'./components/Admin/Settings/ShopSetup.vue') },
@@ -212,7 +215,7 @@ Vue.mixin({
 })
 
 // Vue Filters
-Vue.filter('captilize', function (value) {
+Vue.filter('capitalize', function (value) {
     return value.charAt(0).toUpperCase() + value.slice(1)
 });
 

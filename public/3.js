@@ -202,6 +202,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -689,11 +695,11 @@ var render = function() {
                                         ? _c(
                                             "v-btn",
                                             {
-                                              staticClass: "ma-2 white--text",
+                                              staticClass: "ma-2",
                                               attrs: {
                                                 elevation: "10",
                                                 loading: _vm.show_loader,
-                                                color: "primary",
+                                                outlined: "",
                                                 to: {
                                                   name: "editUser",
                                                   params: {
@@ -708,9 +714,24 @@ var render = function() {
                                                   _vm._s(
                                                     _vm.__("message.edit")
                                                   ) +
-                                                  "\n                                    "
+                                                  "\n                                        "
+                                              ),
+                                              _c(
+                                                "v-icon",
+                                                {
+                                                  attrs: {
+                                                    right: "",
+                                                    color: "primary"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            create\n                                        "
+                                                  )
+                                                ]
                                               )
-                                            ]
+                                            ],
+                                            1
                                           )
                                         : _vm._e()
                                     ],
@@ -767,7 +788,9 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("p", [
-                              _vm._v(_vm._s(_vm._f("captilize")(_vm.user.role)))
+                              _vm._v(
+                                _vm._s(_vm._f("capitalize")(_vm.user.role))
+                              )
                             ]),
                             _vm._v(" "),
                             _c("v-divider")
@@ -829,7 +852,7 @@ var render = function() {
                             _c("p", [
                               _vm._v(
                                 _vm._s(
-                                  _vm._f("captilize")(_vm.user.martial_status)
+                                  _vm._f("capitalize")(_vm.user.martial_status)
                                 )
                               )
                             ]),
@@ -860,7 +883,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("p", [
                               _vm._v(
-                                _vm._s(_vm._f("captilize")(_vm.user.gender))
+                                _vm._s(_vm._f("capitalize")(_vm.user.gender))
                               )
                             ])
                           ]
@@ -1031,8 +1054,8 @@ var render = function() {
   return _c(
     "v-btn",
     {
-      staticClass: "ma-2 white--text",
-      attrs: { absolute: "", right: "", elevation: "10", color: "primary" },
+      staticClass: "ma-2",
+      attrs: { absolute: "", right: "", elevation: "10", outlined: "" },
       on: {
         click: function($event) {
           return _vm.$router.go(-1)

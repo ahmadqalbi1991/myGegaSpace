@@ -49,17 +49,27 @@
                             append-icon="search"
                         ></v-text-field>
                     </template>
+                    <template v-slot:item.status="{ item }">
+                        <v-chip
+                            :color="item.color"
+                            outlined
+                            x-small
+                        >
+                            {{ item.status }}
+                        </v-chip>
+                    </template>
                     <template v-slot:item.hash_id="{ item }">
                         <v-btn
                             v-if="haveRight('email_templates.edit_email_template')"
-                            color="primary"
-                            class="ma-2 white--text"
+                            class="ma-2"
+                            outlined
                             small
                             :to="{name: 'editEmailTemplate', params: {id: item.hash_id}}"
                         >
                             {{ __('message.edit') }}
                             <v-icon
                                 right
+                                color="primary"
                             >
                                 create
                             </v-icon>

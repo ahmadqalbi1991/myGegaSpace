@@ -10,13 +10,9 @@ use Image, Storage, File;
 class ShopSetupController extends Controller
 {
     /**
-     *
-     * @param $request
-     * save setting
-     *
-     * @return void;
-     *
-    */
+     * @param Request $request
+     * @return array
+     */
 
     public function savegeneralSetting(Request $request)
     {
@@ -101,12 +97,8 @@ class ShopSetupController extends Controller
     }
 
     /**
-     *
-     * get shop setting
-     *
-     * @return void
-     *
-    */
+     * @return mixed
+     */
 
     public function getShopSetting()
     {
@@ -134,6 +126,21 @@ class ShopSetupController extends Controller
             $shop->logo_path = $logo_path;
             $shop->favicon_path = $favicon_path;
             return $shop;
+        }
+    }
+
+    public function enableBrands(Request $request) {
+        $status = $request->input('status');
+        $shop = Shop::where(['is_active' => 1])->first();
+        $result = $shop->fill(['brands_allow' => $status])->save();
+        if ($result) {
+            return ['status' => 'success'];
+        } else {
+            $status = "error";
+            $icon = 'warning';
+            $message = __('message.something_went_wrong');
+
+            return ['status' => $status, 'message' => $message, 'icon' => $icon];
         }
     }
 }

@@ -2,10 +2,10 @@
     <v-btn
         absolute
         right
-        class="ma-2 white--text"
+        class="ma-2"
         elevation="10"
         @click="$router.go(-1)"
-        color="primary"
+        outlined
     >
         {{ __('message.back') }}
     </v-btn>

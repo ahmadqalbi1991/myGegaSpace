@@ -247,6 +247,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -301,6 +344,25 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    enableBrands: function enableBrands() {
+      var _this = this;
+
+      this.show_loader = true;
+      axios.post('/enable-brands', {
+        status: !this.site_setting.brands_allow
+      }).then(function (response) {
+        _this.show_loader = false;
+
+        if (response.data.status === 'success') {
+          window.location.reload();
+        } else {
+          _this.snackbar = true;
+          _this.snackbar_text = response.data.message;
+          _this.snackbar_icon = response.data.icon;
+          _this.snackbar_color = response.data.status;
+        }
+      });
+    },
     showDialog: function showDialog(id) {
       if (id) {
         this.deleteId = id;
@@ -308,7 +370,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     getBrands: function getBrands() {
-      var _this = this;
+      var _this2 = this;
 
       this.show_loader = true;
       axios.get('/brands-list', {
@@ -318,9 +380,9 @@ __webpack_require__.r(__webpack_exports__);
           q: this.search
         }
       }).then(function (response) {
-        _this.items = response.data.data;
-        _this.totalBrands = response.data.totalBrands;
-        _this.show_loader = false;
+        _this2.items = response.data.data;
+        _this2.totalBrands = response.data.totalBrands;
+        _this2.show_loader = false;
       });
     },
     updatePage: function updatePage(pagination) {
@@ -338,19 +400,19 @@ __webpack_require__.r(__webpack_exports__);
       this.brand_img_placeholder = URL.createObjectURL(this.brand.image_name);
     },
     createImgData: function createImgData(file) {
-      var _this2 = this;
+      var _this3 = this;
 
       var reader = new FileReader();
       this.makeImage();
 
       reader.onload = function (file) {
-        _this2.brand.image = reader.result;
+        _this3.brand.image = reader.result;
       };
 
       reader.readAsDataURL(file);
     },
     saveBrand: function saveBrand() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.show_loader = true;
       this.$v.brand.$touch();
@@ -359,22 +421,22 @@ __webpack_require__.r(__webpack_exports__);
         url: '/save-brand',
         data: this.brand
       }).then(function (response) {
-        if (_this3.brand.action == 'add') {
-          _this3.resetForm(_this3.brand);
+        _this4.resetForm(_this4.brand);
 
-          _this3.brand.action = 'add';
+        if (_this4.brand.action == 'add') {
+          _this4.brand.action = 'add';
 
-          _this3.$v.brand.$reset();
+          _this4.$v.brand.$reset();
         }
 
-        _this3.snackbar = true;
-        _this3.snackbar_text = response.data.message;
-        _this3.snackbar_icon = response.data.icon;
-        _this3.snackbar_color = response.data.status;
-        _this3.show_dialog = false;
-        _this3.show_loader = false;
+        _this4.snackbar = true;
+        _this4.snackbar_text = response.data.message;
+        _this4.snackbar_icon = response.data.icon;
+        _this4.snackbar_color = response.data.status;
+        _this4.show_dialog = false;
+        _this4.show_loader = false;
 
-        _this3.getBrands();
+        _this4.getBrands();
       });
     },
     editBrand: function editBrand(id) {
@@ -383,7 +445,7 @@ __webpack_require__.r(__webpack_exports__);
       this.checkImg();
     },
     getBrand: function getBrand(id) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.show_loader = true;
       axios.get('/brand-data', {
@@ -391,17 +453,17 @@ __webpack_require__.r(__webpack_exports__);
           id: id
         }
       }).then(function (response) {
-        _this4.brand = response.data;
-        _this4.brand.action = 'edit';
+        _this5.brand = response.data;
+        _this5.brand.action = 'edit';
 
-        _this4.checkImg();
+        _this5.checkImg();
 
-        _this4.show_loader = false;
-        _this4.show_dialog = true;
+        _this5.show_loader = false;
+        _this5.show_dialog = true;
       });
     },
     deleteBrand: function deleteBrand() {
-      var _this5 = this;
+      var _this6 = this;
 
       var id = this.deleteId;
       this.show_loader = true;
@@ -410,7 +472,7 @@ __webpack_require__.r(__webpack_exports__);
           id: id
         }
       }).then(function (response) {
-        _this5.show_loader = false;
+        _this6.show_loader = false;
       });
       this.dialog = false;
       this.getBrands();
@@ -620,287 +682,412 @@ var render = function() {
       _c(
         "v-container",
         [
-          _c(
-            "v-card",
-            { attrs: { elevation: "10" } },
-            [
-              _c(
-                "v-card-title",
+          _vm.site_setting.brands_allow
+            ? _c(
+                "v-card",
+                { attrs: { elevation: "10" } },
                 [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.__("message.brands")) +
-                      "\n                "
-                  ),
                   _c(
-                    "v-btn",
-                    {
-                      attrs: {
-                        color: "primary",
-                        absolute: "",
-                        right: "",
-                        dark: ""
-                      },
-                      on: {
-                        click: function($event) {
-                          _vm.show_dialog = true
-                        }
-                      }
-                    },
+                    "v-card-title",
                     [
                       _vm._v(
-                        "\n                    " +
-                          _vm._s(
-                            _vm.__("message.add") +
-                              " " +
-                              _vm.__("message.brand")
-                          ) +
-                          "\n                    "
+                        "\n                " +
+                          _vm._s(_vm.__("message.brands")) +
+                          "\n                "
                       ),
-                      _c("v-icon", { attrs: { right: "" } }, [
-                        _vm._v(
-                          "\n                        mdi-plus\n                    "
-                        )
-                      ]),
-                      _vm._v(" \n                ")
+                      _c(
+                        "v-btn",
+                        {
+                          attrs: { outlined: "", absolute: "", right: "" },
+                          on: {
+                            click: function($event) {
+                              _vm.show_dialog = true
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(
+                                _vm.__("message.add") +
+                                  " " +
+                                  _vm.__("message.brand")
+                              ) +
+                              "\n                    "
+                          ),
+                          _c(
+                            "v-icon",
+                            { attrs: { right: "", color: "primary" } },
+                            [
+                              _vm._v(
+                                "\n                        mdi-plus\n                    "
+                              )
+                            ]
+                          ),
+                          _vm._v(" \n                ")
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-data-table", {
+                    attrs: {
+                      headers: _vm.headers,
+                      items: _vm.items,
+                      options: _vm.options,
+                      "server-items-length": _vm.totalBrands,
+                      search: _vm.search,
+                      "custom-filter": _vm.getBrands,
+                      elevation: "10"
+                    },
+                    on: {
+                      "update:options": function($event) {
+                        _vm.options = $event
+                      },
+                      pagination: _vm.updatePage
+                    },
+                    scopedSlots: _vm._u(
+                      [
+                        {
+                          key: "top",
+                          fn: function() {
+                            return [
+                              _c("v-text-field", {
+                                staticClass: "mx-4",
+                                attrs: {
+                                  label: _vm.__("message.search_brand"),
+                                  "append-icon": "search"
+                                },
+                                on: {
+                                  input: _vm.getBrands,
+                                  click: _vm.getBrands,
+                                  blur: _vm.getBrands
+                                },
+                                model: {
+                                  value: _vm.search,
+                                  callback: function($$v) {
+                                    _vm.search = $$v
+                                  },
+                                  expression: "search"
+                                }
+                              })
+                            ]
+                          },
+                          proxy: true
+                        },
+                        {
+                          key: "item.image",
+                          fn: function(ref) {
+                            var item = ref.item
+                            return [
+                              _c(
+                                "div",
+                                { staticClass: "m-5" },
+                                [
+                                  item.image
+                                    ? _c(
+                                        "v-avatar",
+                                        { attrs: { size: "50" } },
+                                        [
+                                          _c("img", {
+                                            attrs: {
+                                              src: item.image,
+                                              alt: item.name
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ],
+                                1
+                              )
+                            ]
+                          }
+                        },
+                        {
+                          key: "item.id",
+                          fn: function(ref) {
+                            var item = ref.item
+                            return [
+                              _vm.haveRight("brands.edit_brand")
+                                ? _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "ma-2",
+                                      attrs: { outlined: "", small: "" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.editBrand(item.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                        " +
+                                          _vm._s(_vm.__("message.edit")) +
+                                          "\n                        "
+                                      ),
+                                      _c(
+                                        "v-icon",
+                                        {
+                                          attrs: { right: "", color: "primary" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                            create\n                        "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.haveRight("brands.delete_brand")
+                                ? _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "ma-2",
+                                      attrs: { outlined: "", small: "" },
+                                      on: {
+                                        click: function($event) {
+                                          $event.stopPropagation()
+                                          return _vm.showDialog(item.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                        " +
+                                          _vm._s(_vm.__("message.delete")) +
+                                          "\n                        "
+                                      ),
+                                      _c(
+                                        "v-icon",
+                                        {
+                                          attrs: { right: "", color: "error" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                            mdi-delete\n                        "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "v-dialog",
+                                {
+                                  attrs: {
+                                    "max-width": "500",
+                                    "retain-focus": false
+                                  },
+                                  model: {
+                                    value: _vm.dialog,
+                                    callback: function($$v) {
+                                      _vm.dialog = $$v
+                                    },
+                                    expression: "dialog"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "v-card",
+                                    [
+                                      _c(
+                                        "v-card-title",
+                                        { staticClass: "headline" },
+                                        [
+                                          _c(
+                                            "span",
+                                            { staticClass: "material-icons" },
+                                            [_vm._v(" warning")]
+                                          ),
+                                          _vm._v(
+                                            "  " +
+                                              _vm._s(
+                                                _vm.__("message.warning")
+                                              ) +
+                                              "\n                            "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-card-text", [
+                                        _vm._v(
+                                          "\n                                " +
+                                            _vm._s(
+                                              _vm.__("message.delete_confirm", [
+                                                _vm.__("message.brand")
+                                              ])
+                                            ) +
+                                            "\n                            "
+                                        )
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-actions",
+                                        [
+                                          _c("v-spacer"),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: { color: "primary" },
+                                              on: {
+                                                click: function($event) {
+                                                  _vm.dialog = false
+                                                }
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                    " +
+                                                  _vm._s(
+                                                    _vm.__("message.cancel")
+                                                  ) +
+                                                  "\n                                "
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: { color: "error" },
+                                              on: { click: _vm.deleteBrand }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                    " +
+                                                  _vm._s(
+                                                    _vm.__("message.confirm")
+                                                  ) +
+                                                  "\n                                "
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          }
+                        }
+                      ],
+                      null,
+                      false,
+                      2434090769
+                    )
+                  })
+                ],
+                1
+              )
+            : _c(
+                "v-card",
+                { attrs: { elevation: "10" } },
+                [
+                  _c(
+                    "v-col",
+                    { attrs: { cols: "12" } },
+                    [
+                      _c(
+                        "v-banner",
+                        {
+                          scopedSlots: _vm._u([
+                            {
+                              key: "actions",
+                              fn: function() {
+                                return [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: { text: "", outlined: "" },
+                                      on: { click: _vm.enableBrands }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                            " +
+                                          _vm._s(
+                                            _vm.__("message.enable_brands")
+                                          ) +
+                                          "\n                            "
+                                      ),
+                                      _c(
+                                        "v-icon",
+                                        {
+                                          attrs: { right: "", color: "success" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                power_settings_new\n                            "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              },
+                              proxy: true
+                            }
+                          ])
+                        },
+                        [
+                          _c("div", { staticClass: "card-wrapper" }, [
+                            _c("div", { staticClass: "card-text" }, [
+                              _c(
+                                "h3",
+                                [
+                                  _c(
+                                    "v-icon",
+                                    { attrs: { color: "warning" } },
+                                    [
+                                      _vm._v(
+                                        "\n                                    warning\n                                "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(
+                                    "\n                                " +
+                                      _vm._s(
+                                        _vm.__("message.brands_setting_off")
+                                      ) +
+                                      "\n                            "
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("p", [
+                                _vm._v(
+                                  "\n                                " +
+                                    _vm._s(
+                                      _vm.__("message.brand_allow_permission")
+                                    ) +
+                                    "\n                            "
+                                )
+                              ])
+                            ])
+                          ])
+                        ]
+                      )
                     ],
                     1
                   )
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c("v-data-table", {
-                attrs: {
-                  headers: _vm.headers,
-                  items: _vm.items,
-                  options: _vm.options,
-                  "server-items-length": _vm.totalBrands,
-                  search: _vm.search,
-                  "custom-filter": _vm.getBrands,
-                  elevation: "10"
-                },
-                on: {
-                  "update:options": function($event) {
-                    _vm.options = $event
-                  },
-                  pagination: _vm.updatePage
-                },
-                scopedSlots: _vm._u([
-                  {
-                    key: "top",
-                    fn: function() {
-                      return [
-                        _c("v-text-field", {
-                          staticClass: "mx-4",
-                          attrs: {
-                            label: _vm.__("message.search_brand"),
-                            "append-icon": "search"
-                          },
-                          on: {
-                            input: _vm.getBrands,
-                            click: _vm.getBrands,
-                            blur: _vm.getBrands
-                          },
-                          model: {
-                            value: _vm.search,
-                            callback: function($$v) {
-                              _vm.search = $$v
-                            },
-                            expression: "search"
-                          }
-                        })
-                      ]
-                    },
-                    proxy: true
-                  },
-                  {
-                    key: "item.image",
-                    fn: function(ref) {
-                      var item = ref.item
-                      return [
-                        _c(
-                          "div",
-                          { staticClass: "m-5" },
-                          [
-                            item.image
-                              ? _c("v-avatar", { attrs: { size: "50" } }, [
-                                  _c("img", {
-                                    attrs: { src: item.image, alt: item.name }
-                                  })
-                                ])
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      ]
-                    }
-                  },
-                  {
-                    key: "item.id",
-                    fn: function(ref) {
-                      var item = ref.item
-                      return [
-                        _vm.haveRight("brands.edit_brand")
-                          ? _c(
-                              "v-btn",
-                              {
-                                staticClass: "ma-2 white--text",
-                                attrs: { color: "primary", small: "" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editBrand(item.id)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(_vm.__("message.edit")) +
-                                    "\n                        "
-                                ),
-                                _c("v-icon", { attrs: { right: "" } }, [
-                                  _vm._v(
-                                    "\n                            create\n                        "
-                                  )
-                                ])
-                              ],
-                              1
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.haveRight("brands.delete_brand")
-                          ? _c(
-                              "v-btn",
-                              {
-                                staticClass: "ma-2 white--text",
-                                attrs: { color: "error", small: "" },
-                                on: {
-                                  click: function($event) {
-                                    $event.stopPropagation()
-                                    return _vm.showDialog(item.id)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(_vm.__("message.delete")) +
-                                    "\n                        "
-                                ),
-                                _c("v-icon", { attrs: { right: "" } }, [
-                                  _vm._v(
-                                    "\n                            mdi-delete\n                        "
-                                  )
-                                ])
-                              ],
-                              1
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c(
-                          "v-dialog",
-                          {
-                            attrs: {
-                              "max-width": "500",
-                              "retain-focus": false
-                            },
-                            model: {
-                              value: _vm.dialog,
-                              callback: function($$v) {
-                                _vm.dialog = $$v
-                              },
-                              expression: "dialog"
-                            }
-                          },
-                          [
-                            _c(
-                              "v-card",
-                              [
-                                _c(
-                                  "v-card-title",
-                                  { staticClass: "headline" },
-                                  [
-                                    _c(
-                                      "span",
-                                      { staticClass: "material-icons" },
-                                      [_vm._v(" warning")]
-                                    ),
-                                    _vm._v(
-                                      "  " +
-                                        _vm._s(_vm.__("message.warning")) +
-                                        "\n                            "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("v-card-text", [
-                                  _vm._v(
-                                    "\n                                " +
-                                      _vm._s(
-                                        _vm.__("message.delete_confirm", [
-                                          _vm.__("message.brand")
-                                        ])
-                                      ) +
-                                      "\n                            "
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "v-card-actions",
-                                  [
-                                    _c("v-spacer"),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: { color: "primary" },
-                                        on: {
-                                          click: function($event) {
-                                            _vm.dialog = false
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                    " +
-                                            _vm._s(_vm.__("message.cancel")) +
-                                            "\n                                "
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        attrs: { color: "error" },
-                                        on: { click: _vm.deleteBrand }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                    " +
-                                            _vm._s(_vm.__("message.confirm")) +
-                                            "\n                                "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    }
-                  }
-                ])
-              })
-            ],
-            1
-          )
+              )
         ],
         1
       ),
@@ -931,7 +1118,7 @@ var render = function() {
                   _c(
                     "v-btn",
                     {
-                      attrs: { icon: "", dark: "" },
+                      attrs: { icon: "" },
                       on: {
                         click: function($event) {
                           _vm.show_dialog = false
@@ -944,7 +1131,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("v-toolbar-title", [
                     _vm._v(
-                      _vm._s(_vm._f("captilize")(_vm.brand.action)) +
+                      _vm._s(_vm._f("capitalize")(_vm.brand.action)) +
                         " " +
                         _vm._s(_vm.__("message.brand"))
                     )
@@ -1144,7 +1331,7 @@ var render = function() {
               ? _c(
                   "v-btn",
                   {
-                    staticClass: "ma-2 white--text",
+                    staticClass: "ma-2",
                     attrs: { color: item.color, small: "" },
                     on: {
                       click: function($event) {
@@ -1173,7 +1360,7 @@ var render = function() {
               ? _c(
                   "v-btn",
                   {
-                    staticClass: "ma-2 white--text",
+                    staticClass: "ma-2",
                     attrs: {
                       color: "primary",
                       small: "",
@@ -1198,7 +1385,7 @@ var render = function() {
               ? _c(
                   "v-btn",
                   {
-                    staticClass: "ma-2 white--text",
+                    staticClass: "ma-2",
                     attrs: {
                       color: "primary",
                       small: "",

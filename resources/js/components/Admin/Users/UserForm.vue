@@ -30,7 +30,7 @@
                         elevation="10"
                     >
                         <v-card-title>
-                            <h3>{{ user.action | captilize}} {{ __('message.profile') }}</h3>
+                            <h3>{{ user.action | capitalize}} {{ __('message.profile') }}</h3>
                             <back-btn></back-btn>
                         </v-card-title>
                         <div class="card-wrapper">
@@ -383,11 +383,17 @@
                                             <v-btn
                                                 class="mr-4"
                                                 @click="saveUser"
-                                                color="success"
+                                                outlined
                                                 right
                                                 :loading="show_loader"
                                             >
                                                 {{ __('message.save') }}
+                                                <v-icon
+                                                    right
+                                                    color="success"
+                                                >
+                                                    save
+                                                </v-icon>
                                             </v-btn>
                                         </div>
                                     </v-col>

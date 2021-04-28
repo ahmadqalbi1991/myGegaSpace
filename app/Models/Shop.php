@@ -38,7 +38,8 @@ class Shop extends Model
         'subscribe',
         'recent_products',
         'customer_section',
-        'about_us'
+        'about_us',
+        'brands_allow'
     ];
     protected $hidden = ['created_at', 'updated_at'];
 

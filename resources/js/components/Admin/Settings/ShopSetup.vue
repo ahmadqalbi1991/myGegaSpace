@@ -77,6 +77,7 @@
                                         :items="countries"
                                         item-value="id"
                                         item-text="name"
+                                        :headers="countries"
                                         :label="__('message.country')"
                                         hide-selected
                                         small-chips
@@ -254,6 +255,19 @@
                                         :readonly="has_data"
                                         prepend-icon="fab fa-youtube"
                                     ></v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col
+                                    cols="12"
+                                    lg="4"
+                                    md="4"
+                                    sm="12"
+                                >
+                                    <v-checkbox
+                                        v-model="shop_setting.brands_allow"
+                                        :label="__('message.brands_allowed')"
+                                    ></v-checkbox>
                                 </v-col>
                             </v-row>
                             <v-row>
@@ -468,23 +482,19 @@
                                 >
                                     <div class="buttons">
                                         <v-btn
-                                            v-if="!has_data"
-                                            class="mr-4"
-                                            @click="saveSetting"
-                                            color="success"
-                                            right
-                                            :loading="show_loader"
-                                        >
-                                            {{ __('message.save') }}
-                                        </v-btn>
-                                        <v-btn
                                             v-if="has_data"
                                             class="mr-4"
-                                            @click="makeEditable"
-                                            color="primary"
+                                            @click="saveSetting"
                                             right
+                                            outlined
                                         >
-                                            {{ __('message.edit') }}
+                                            {{ __('message.save') }}
+                                            <v-icon
+                                                right
+                                                color="success"
+                                            >
+                                                save
+                                            </v-icon>
                                         </v-btn>
                                     </div>
                                 </v-col>
@@ -535,6 +545,7 @@
                 subscribe: null,
                 recent_products: null,
                 customer_section: null,
+                brands_allow: null,
                 action: 'add'
 
             },

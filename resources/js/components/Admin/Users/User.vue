@@ -65,13 +65,19 @@
                                     <v-card-actions>
                                         <v-btn
                                             v-if="haveRight('users.edit_user')"
-                                            class="ma-2 white--text"
+                                            class="ma-2"
                                             elevation="10"
                                             :loading="show_loader"
-                                            color="primary"
+                                            outlined
                                             :to="{name: 'editUser', params: {id: user.hash_id}}"
                                         >
                                             {{ __('message.edit') }}
+                                            <v-icon
+                                                right
+                                                color="primary"
+                                            >
+                                                create
+                                            </v-icon>
                                         </v-btn>
                                     </v-card-actions>
                                 </v-col>
@@ -94,7 +100,7 @@
                         <div class="card-wrapper">
                             <div v-show="user.role" class="card-info">
                                 <label><i class="fas fa-user-cog"></i> Role</label>
-                                <p>{{ user.role | captilize }}</p>
+                                <p>{{ user.role | capitalize }}</p>
                                 <v-divider></v-divider>
                             </div>
                             <div v-show="user.date_of_birth" class="card-info">
@@ -104,12 +110,12 @@
                             </div>
                             <div v-show="user.martial_status" class="card-info">
                                 <label><i class="fas fa-user-friends"></i> Martial Status</label>
-                                <p>{{ user.martial_status | captilize }}</p>
+                                <p>{{ user.martial_status | capitalize }}</p>
                                 <v-divider></v-divider>
                             </div>
                             <div v-show="user.gender" class="card-info">
                                 <label><i class="fas fa-venus-mars"></i> Gender</label>
-                                <p>{{ user.gender | captilize }}</p>
+                                <p>{{ user.gender | capitalize }}</p>
                             </div>
                         </div>
                     </v-card>

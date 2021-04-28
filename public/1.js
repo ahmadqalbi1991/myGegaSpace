@@ -152,6 +152,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -432,7 +438,9 @@ var render = function() {
                         [
                           _c("h3", [
                             _vm._v(
-                              _vm._s(_vm._f("captilize")(_vm.template.action)) +
+                              _vm._s(
+                                _vm._f("capitalize")(_vm.template.action)
+                              ) +
                                 " " +
                                 _vm._s(_vm.__("message.profile"))
                             )
@@ -625,7 +633,7 @@ var render = function() {
                                         {
                                           staticClass: "mr-4",
                                           attrs: {
-                                            color: "success",
+                                            outlined: "",
                                             right: "",
                                             loading: _vm.show_loader
                                           },
@@ -635,9 +643,24 @@ var render = function() {
                                           _vm._v(
                                             "\n                                            " +
                                               _vm._s(_vm.__("message.save")) +
-                                              "\n                                        "
+                                              "\n                                            "
+                                          ),
+                                          _c(
+                                            "v-icon",
+                                            {
+                                              attrs: {
+                                                right: "",
+                                                color: "success"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                save\n                                            "
+                                              )
+                                            ]
                                           )
-                                        ]
+                                        ],
+                                        1
                                       )
                                     ],
                                     1
@@ -691,8 +714,8 @@ var render = function() {
   return _c(
     "v-btn",
     {
-      staticClass: "ma-2 white--text",
-      attrs: { absolute: "", right: "", elevation: "10", color: "primary" },
+      staticClass: "ma-2",
+      attrs: { absolute: "", right: "", elevation: "10", outlined: "" },
       on: {
         click: function($event) {
           return _vm.$router.go(-1)

@@ -10,7 +10,7 @@
      */
     function getCountries() {
         $countries = DB::table("countries")
-            ->select('id', 'name')
+            ->select('id', 'name', 'code AS header')
             ->get();
 
         return $countries;
@@ -26,7 +26,7 @@
     function getStates($country)
     {
         $states = DB::table("states")
-            ->select('id', 'name')
+            ->select('id', 'name', 'country_id As header')
             ->where("country_id", $country)
             ->get();
 
@@ -42,7 +42,7 @@
      */
     function getCities($state) {
         $cities = DB::table("cities")
-            ->select('id', 'name')
+            ->select('id', 'name', 'state_id AS header')
             ->where("state_id", $state)
             ->get();
 
@@ -185,28 +185,6 @@
      */
     function adminSetting() {
         return Setting::where(['is_active' => 1, 'is_default' => 1])->first();
-    }
-
-    /**
-     *
-     * delete record
-     *
-     * @param $type, $id
-     *
-     */
-    function deleteRecord($type, $id) {
-        return DB::table($type)->where('id', $id)->delete();
-    }
-
-    /**
-     *
-     * status change
-     *
-     * @param $type, $id, $value
-     *
-     */
-    function changeStatus($type, $id, $value) {
-        return DB::table($type)->where('id', $id)->update(['status' => $value]);
     }
 
     /**

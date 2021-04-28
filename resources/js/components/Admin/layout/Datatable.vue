@@ -20,7 +20,7 @@
             <v-btn
                 v-if="change_status"
                 :color="item.color"
-                class="ma-2 white--text"
+                class="ma-2"
                 small
                 @click="changeStatus(item.id, item.status, type)"
             >
@@ -38,7 +38,7 @@
             <v-btn
                 v-if="view"
                 color="primary"
-                class="ma-2 white--text"
+                class="ma-2"
                 small
                 :to="{name: to, params: {id: item.hash_id}}"
             >
@@ -52,7 +52,7 @@
             <v-btn
                 v-if="edit"
                 color="primary"
-                class="ma-2 white--text"
+                class="ma-2"
                 small
                 :to="{name: edit_path, params: {id: item.hash_id}}"
             >
